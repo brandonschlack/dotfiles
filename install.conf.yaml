@@ -1,6 +1,7 @@
 - defaults:
 - clean: ['~']
 - link:
+    ~/.dotfiles: ''
 - create:
     - ~/Documents/Development/config
     - ~/Documents/Development/Projects

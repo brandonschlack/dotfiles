@@ -2,6 +2,8 @@
 - clean: ['~']
 - link:
     ~/.dotfiles: ''
+    ~/.nvm: 'nvm/nvm'
+    ~/.nvm/default-packages: 'nvm/default-packages'
     ~/.oh-my-zsh: 'zsh/oh-my-zsh'
     ~/.zsh_custom: 'zsh/zsh_custom'
     ~/.zshrc: 'zsh/zshrc'

@@ -2,6 +2,9 @@
 - clean: ['~']
 - link:
     ~/.dotfiles: ''
+    ~/.oh-my-zsh: 'zsh/oh-my-zsh'
+    ~/.zsh_custom: 'zsh/zsh_custom'
+    ~/.zshrc: 'zsh/zshrc'
 - create:
     - ~/Documents/Development/config
     - ~/Documents/Development/Projects

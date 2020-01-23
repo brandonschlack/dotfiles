@@ -5,3 +5,9 @@
 [submodule "dotbot-brew"]
 	path = dotbot-brew
 	url = https://github.com/d12frosted/dotbot-brew.git
+[submodule "zsh/oh-my-zsh"]
+	path = zsh/oh-my-zsh
+	url = https://github.com/ohmyzsh/ohmyzsh.git
+[submodule "zsh/plugins/ssh"]
+	path = zsh/zsh_custom/plugins/ssh
+	url = https://github.com/zpm-zsh/ssh.git

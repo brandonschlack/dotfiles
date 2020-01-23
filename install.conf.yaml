@@ -1,6 +1,10 @@
 - defaults:
 - clean: ['~']
 - link:
+- create:
+    - ~/Documents/Development/config
+    - ~/Documents/Development/Projects
+    - ~/Documents/Development/Resources
 - brewfile:
     - Brewfile
 - shell:

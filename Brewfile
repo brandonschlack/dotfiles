@@ -45,6 +45,7 @@ brew "libmagic"
 brew "libmatroska"
 brew "libvorbis"
 brew "libxml2"
+brew "mas"
 brew "m-cli"
 brew "mhash"
 brew "mcrypt"
@@ -88,3 +89,11 @@ cask "quicklook-json"
 cask "quicklookase"
 cask "suspicious-package"
 cask "webpquicklook"
+
+# Mac App Store
+mas "Reeder", id: 1449412482
+mas "Fantastical", id: 975937182
+mas "Affinity Designer", id: 824171161
+mas "Affinity Photo", id: 824183456
+mas "Xcode", id: 497799835
+mas "Amphetamine", id: 937984704

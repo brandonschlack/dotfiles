@@ -1,0 +1,6 @@
+- defaults:
+- clean: ['~']
+- link:
+- brewfile:
+    - Brewfile
+- shell:

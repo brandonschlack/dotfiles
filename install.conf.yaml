@@ -1,17 +1,30 @@
 - defaults:
 - clean: ['~']
-- link:
-    ~/.dotfiles: ''
-    ~/.editorconfig: 'editorconfig'
-    ~/.nvm: 'nvm/nvm'
-    ~/.nvm/default-packages: 'nvm/default-packages'
-    ~/.oh-my-zsh: 'zsh/oh-my-zsh'
-    ~/.zsh_custom: 'zsh/zsh_custom'
-    ~/.zshrc: 'zsh/zshrc'
+
 - create:
     - ~/Documents/Development/config
     - ~/Documents/Development/Projects
     - ~/Documents/Development/Resources
+
+- link:
+    ~/.dotfiles: ''
+    ~/.editorconfig: 'editorconfig'
+    ~/.oh-my-zsh: 'zsh/oh-my-zsh'
+    ~/.zsh_custom: 'zsh/zsh_custom'
+    ~/.zshrc: 'zsh/zshrc'
+
+- brew:
+    - git
+    - git-lfs
+    - zsh
+
+- shell:
+    - [chsh -s $(which zsh), Making zsh the default shell]
+    - [git clone https://github.com/brandonschlack/qmk_firmware/ ~/Documents/Development/config/qmk_firmware, Cloning QMK]
+
 - brewfile:
     - Brewfile
-- shell:
+
+- link:
+    ~/.nvm: 'nvm/nvm'
+    ~/.nvm/default-packages: 'nvm/default-packages'

@@ -121,5 +121,9 @@ alias edit='eval $EDITOR'
 alias zshconfig="edit ~/.zshrc"
 alias ohmyzsh="edit ~/.oh-my-zsh"
 
+# Environment Variables
+# Homebrew
+export HOMEBREW_BUNDLE_FILE="${HOME}/.brew/Brewfile"
+
 # iTerm2 Shell intergration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source $HOME/.iterm2_shell_integration.zsh

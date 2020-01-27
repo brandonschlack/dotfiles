@@ -12,6 +12,7 @@
     ~/.oh-my-zsh: 'zsh/oh-my-zsh'
     ~/.zsh_custom: 'zsh/zsh_custom'
     ~/.zshrc: 'zsh/zshrc'
+    ~/.brew: 'brew'
 
 - brew:
     - git
@@ -23,7 +24,7 @@
     - [git clone https://github.com/brandonschlack/qmk_firmware/ ~/Documents/Development/config/qmk_firmware, Cloning QMK]
 
 - brewfile:
-    - Brewfile
+    - brew/Brewfile
 
 - link:
     ~/.nvm: 'nvm/nvm'

@@ -59,8 +59,8 @@ brew "thefuck"
 brew "tree"
 brew "wget"
 brew "wp-cli"
-brew "zlib"
 brew "yarn"
+brew "zlib"
 brew "zsh"
 brew "beeftornado/rmtree/brew-rmtree"
 brew "osx-cross/arm/arm-gcc-bin@8", link: true
@@ -70,15 +70,11 @@ brew "qmk/qmk/qmk"
 brew "sass/sass/sass"
 
 # Casks: Applications
-cask "java8"
-cask "google-chrome"
-cask "1password"
-cask "visual-studio-code"
-cask "karabiner-elements"
-cask "dropbox"
 cask "android-messages"
 cask "font-source-code-pro"
 cask "freecad"
+cask "iterm2"
+cask "java8"
 cask "kicad"
 cask "qlcolorcode"
 cask "qlimagesize"
@@ -92,9 +88,11 @@ cask "suspicious-package"
 cask "webpquicklook"
 
 # Mac App Store
-mas "Reeder", id: 1449412482
-mas "Fantastical", id: 975937182
 mas "Affinity Designer", id: 824171161
 mas "Affinity Photo", id: 824183456
-mas "Xcode", id: 497799835
 mas "Amphetamine", id: 937984704
+mas "Fantastical", id: 975937182
+mas "Reeder", id: 1449412482
+mas "TickTick", id: 966085870
+mas "uBlock", id: 1385985095
+mas "Xcode", id: 497799835

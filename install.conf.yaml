@@ -2,6 +2,7 @@
 - clean: ['~']
 
 - create:
+    - ~/.ghq
     - ~/Documents/Development/config
     - ~/Documents/Development/Projects
     - ~/Documents/Development/Resources

@@ -5,6 +5,7 @@
     - ~/.ghq
     - ~/Documents/Development/config
     - ~/Documents/Development/Projects
+    - ~/Documents/Development/Projects/Keyboards
     - ~/Documents/Development/Resources
 
 - link:
@@ -22,7 +23,7 @@
 
 - shell:
     - [chsh -s $(which zsh), Making zsh the default shell]
-    - [git clone https://github.com/brandonschlack/qmk_firmware/ ~/Documents/Development/config/qmk_firmware, Cloning QMK]
+    - [source ~/.zshrc, Reloading shell environment]
 
 - brewfile:
     - brew/Brewfile

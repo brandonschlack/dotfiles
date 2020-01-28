@@ -1,3 +1,7 @@
+# Development Variables
+export GHQ_ROOT=$HOME/.ghq
+export PATH=$PATH:$QMK_HOME/bin
+
 # Development Functions
 # gitignore.io command
 function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}

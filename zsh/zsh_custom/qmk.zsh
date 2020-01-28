@@ -1,5 +1,5 @@
 # QMK Firmware
-export QMK_HOME=$HOME/Documents/Development/config/qmk_firmware
+export QMK_HOME=$HOME/Documents/Development/Projects/Keyboards/qmk_firmware
 export PATH=$PATH:$QMK_HOME/bin
 
 alias qk='cd $QMK_HOME'

@@ -8,8 +8,7 @@ if type brew &>/dev/null; then
 fi
 
 # Android Command Line Tools
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator
+export ANDROID_SDK_ROOT="$(brew --prefix)/share/android-sdk"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/$USER/.oh-my-zsh"

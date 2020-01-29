@@ -72,6 +72,8 @@ brew "sass/sass/sass"
 
 # Casks: Applications
 cask "android-messages"
+cask "android-platform-tools"
+cask "android-sdk"
 cask "calibre"
 cask "dropbox"
 cask "firefox"

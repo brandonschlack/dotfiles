@@ -2,7 +2,6 @@
 - clean: ['~']
 
 - create:
-    - ~/.ghq
     - ~/Documents/Development/config
     - ~/Documents/Development/Projects
     - ~/Documents/Development/Projects/Keyboards
@@ -24,6 +23,7 @@
 - shell:
     - [chsh -s $(which zsh), Making zsh the default shell]
     - [source ~/.zshrc, Reloading shell environment]
+    - [test -d "$QMK_HOME" && echo "Already have QMK" || git clone https://github.com/brandonschlack/qmk_firmware.git "$QMK_HOME", Install QMK]
 
 - brewfile:
     - brew/Brewfile

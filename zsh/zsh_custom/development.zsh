@@ -1,5 +1,4 @@
 # Development Variables
-export GHQ_ROOT=$HOME/.ghq
 export PATH=$PATH:$QMK_HOME/bin
 
 # Development Functions

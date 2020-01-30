@@ -9,7 +9,7 @@
 
 - link:
     ~/.dotfiles: ''
-    ~/.editorconfig: 'editorconfig'
+    ~/.editorconfig: 'editorconfig/editorconfig'
     ~/.gitconfig: 'gitconfig/gitconfig'
     ~/.gitconfig-ib: 'gitconfig/gitconfig-ib'
     ~/.oh-my-zsh: 'zsh/oh-my-zsh'

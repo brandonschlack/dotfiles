@@ -1,0 +1,32 @@
+[user]
+	name = Brandon Schlack
+	email = brandonschlack@gmail.com
+[alias]
+	undo = reset --soft HEAD^
+	clear = checkout -- .
+	yo = status --short --branch
+	stsh = stash save --keep-index
+	stash-all = stash save --include-untracked
+	glog = log --graph --pretty=format:'%C(bold blue)<%an>%Creset -%C(yellow)%d%Creset %Cgreen(%cr)%n%Cred%h%Creset %s'
+	missing = log HEAD..FETCH_HEAD --graph --pretty=format:'%C(bold blue)<%an>%Creset -%C(yellow)%d%Creset %Cgreen(%cr)%n%Cred%h%Creset %s'
+	missing-file = log HEAD..FETCH_HEAD --name-status
+[color]
+	ui = auto
+[core]
+	editor = code --wait
+	excludesfile = ~/.gitignore_global
+[merge]
+    tool = vscode
+[mergetool "vscode"]
+    cmd = code --wait $MERGED
+[diff]
+    tool = vscode
+[difftool "vscode"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[includeIf "gitdir/i:~/Documents/Development/Projects/Internet\ Brands/"]
+    path = ~/.gitconfig-ib

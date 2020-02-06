@@ -28,5 +28,5 @@
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
-[includeIf "gitdir/i:~/Documents/Development/Projects/Internet\ Brands/"]
+[includeIf "gitdir/i:~/Documents/Development/Projects/Internet_Brands/"]
     path = ~/.gitconfig-ib

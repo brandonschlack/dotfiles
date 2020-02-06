@@ -2,7 +2,7 @@
 #
 # Projects
 ## Local
-export WORK_ROOT=$HOME/Documents/Development/Projects/Internet\ Brands
+export WORK_ROOT=$HOME/Documents/Development/Projects/Internet_Brands
 fodors=$WORK_ROOT/fodors.com
 alias fd='cd $fodors'
 fodors_wordpress=$WORK_ROOT/fodors.com-wordpress

@@ -4,6 +4,7 @@ export PATH=$PATH:$QMK_HOME/bin
 
 alias qk='cd $QMK_HOME'
 alias reseteeprom='dfu-programmer atmega32u4 erase && dfu-programmer atmega32u4 flash --eeprom $QMK_HOME/quantum/tools/eeprom_reset.hex'
+alias qkup='git fetch --all --prune && git checkout master && git merge upstream/master && git push && git checkout brandonschlack && git merge master --no-edit'
 
 # Flash Massdrop firmware
 function mdlflash() {

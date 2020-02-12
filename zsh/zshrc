@@ -89,6 +89,7 @@ plugins=(
   adb
   ssh
   yarn
+  jira
 )
 
 source $ZSH/oh-my-zsh.sh

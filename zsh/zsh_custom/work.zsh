@@ -38,3 +38,8 @@ function ibdev_remote() {
     ssh -t $server "cd $dir; clear; $command;"
 }
 alias rfw="ibdev_remote -d wordpress"
+
+## Jira Plugin Variables
+export JIRA_URL="https://jira.internetbrands.com/"
+export JIRA_NAME="bschlack"
+export JIRA_DEFAULT_ACTION="dashboard"

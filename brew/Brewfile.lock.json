@@ -8,22 +8,22 @@
         "revision": "654a0a8905a4d9e58fcb287a3143cf54a94fda06"
       },
       "caskroom/versions": {
-        "revision": "3b0635589ab71a793aecfa9ffc93ea1b20545db5"
+        "revision": "67e025980fa5546a7a64b3933d85a4d70fbad35b"
       },
       "dart-lang/dart": {
         "revision": "2113d102d663013f249b73b4c158b9fc9b97d9cf"
       },
       "homebrew/bundle": {
-        "revision": "04a8b37bbdd9bb801a5fde72fd82232846cf2b69"
+        "revision": "0796bb72fa0b6615cdb51d0ec07ca405e4550870"
       },
       "homebrew/cask": {
-        "revision": "a282c609776131d5f731c65a7a29230b7aa22bbe"
+        "revision": "e8c7697b42a0f64706e4be9141192475fa46929a"
       },
       "homebrew/cask-fonts": {
         "revision": "fca9a79d88b9b9da43d47b0b959854fc8506ac69"
       },
       "homebrew/core": {
-        "revision": "f861b6d23ee171095e3ce84577e7d876dfd6ee7f"
+        "revision": "7556246c835bed7dbd217c49b138bbf87496cb1a"
       },
       "osx-cross/arm": {
         "revision": "d2ffbe7987db532f4951dae6b91b0acbc85d4789"
@@ -32,13 +32,16 @@
         "revision": "214cd3dcae97683f056246d7d9983995676ce71c"
       },
       "px4/px4": {
-        "revision": "77962b13ed7cab460f3811e9705af15cf1eb7d0e"
+        "revision": "3c71517245ea433416a30262d7abe3acb9bde53e"
       },
       "qmk/qmk": {
         "revision": "49e727713deef2397db3a3d61cd04baced9d5417"
       },
       "sass/sass": {
-        "revision": "5117bccdc020f91fab2c895e82e8bb95e813c744"
+        "revision": "032af5ce892ba11b1a2f8325f3eb5a14d00dd316"
+      },
+      "homebrew/cask-versions": {
+        "revision": "29f35fbd6b6a2e255724de553dc4139d4be4158d"
       }
     },
     "brew": {
@@ -1099,7 +1102,7 @@
         }
       },
       "calibre": {
-        "version": "4.11.2",
+        "version": "4.10.1",
         "options": {
           "full_name": "calibre"
         }
@@ -1129,7 +1132,7 @@
         }
       },
       "iterm2": {
-        "version": "3.3.7",
+        "version": "3.3.9",
         "options": {
           "full_name": "iterm2"
         }
@@ -1147,7 +1150,7 @@
         }
       },
       "macdown": {
-        "version": "0.7.2",
+        "version": "0.8.0d71",
         "options": {
           "full_name": "macdown"
         }
@@ -1159,7 +1162,7 @@
         }
       },
       "microsoft-edge": {
-        "version": "79.0.309.71",
+        "version": "80.0.361.62",
         "options": {
           "full_name": "microsoft-edge"
         }
@@ -1171,7 +1174,7 @@
         }
       },
       "postman": {
-        "version": "7.16.1",
+        "version": "7.19.1",
         "options": {
           "full_name": "postman"
         }
@@ -1243,13 +1246,13 @@
         }
       },
       "tableplus": {
-        "version": "3.1.0,290",
+        "version": "3.1.2,296",
         "options": {
           "full_name": "tableplus"
         }
       },
       "visual-studio-code": {
-        "version": "1.41.1",
+        "version": "1.42.1",
         "options": {
           "full_name": "visual-studio-code"
         }
@@ -1259,16 +1262,22 @@
         "options": {
           "full_name": "webpquicklook"
         }
+      },
+      "adoptopenjdk8": {
+        "version": "8,242:b08",
+        "options": {
+          "full_name": "homebrew/cask-versions/adoptopenjdk8"
+        }
       }
     },
     "mas": {
       "Affinity Designer": {
         "id": "824171161",
-        "version": "1.7.3"
+        "version": "1.8.1"
       },
       "Affinity Photo": {
         "id": "824183456",
-        "version": "1.7.3"
+        "version": "1.8.0"
       },
       "Amphetamine": {
         "id": "937984704",
@@ -1284,7 +1293,7 @@
       },
       "TickTick": {
         "id": "966085870",
-        "version": "3.4.00"
+        "version": "3.4.01"
       },
       "uBlock": {
         "id": "1385985095",
@@ -1299,10 +1308,10 @@
   "system": {
     "macos": {
       "catalina": {
-        "HOMEBREW_VERSION": "2.2.6",
+        "HOMEBREW_VERSION": "2.2.6-54-ge88eea6",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "f861b6d23ee171095e3ce84577e7d876dfd6ee7f",
-        "CLT": "",
+        "Homebrew/homebrew-core": "7556246c835bed7dbd217c49b138bbf87496cb1a",
+        "CLT": "11.0.33.17",
         "Xcode": "11.3.1",
         "macOS": "10.15.3"
       }

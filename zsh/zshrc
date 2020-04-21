@@ -72,6 +72,9 @@ ZSH_THEME="brandonschlack"
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
+# Enable nvm auto use command for zsh-nvm
+export NVM_AUTO_USE=true
+
 # Would you like to use another custom folder than $ZSH/custom?
 ZSH_CUSTOM="/Users/$USER/.zsh_custom"
 
@@ -86,9 +89,9 @@ plugins=(
   osx
   brew
   git
+  zsh-nvm
   node
   npm
-  nvm
   adb
   ssh
   yarn

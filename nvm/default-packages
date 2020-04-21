@@ -21,3 +21,4 @@ svgo
 typescript
 uglify-js
 webpack
+yarn

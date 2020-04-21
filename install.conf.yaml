@@ -35,5 +35,4 @@
     - brew/Brewfile
 
 - link:
-    ~/.nvm: 'nvm/nvm'
     ~/.nvm/default-packages: 'nvm/default-packages'

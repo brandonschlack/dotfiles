@@ -113,6 +113,8 @@ plugins=(
   ssh
   yarn
   jira
+  z
+  zsh_reload
 )
 
 source $ZSH/oh-my-zsh.sh

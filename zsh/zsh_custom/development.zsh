@@ -1,5 +1,4 @@
 # Development Variables
-export PATH=$PATH:$QMK_HOME/bin
 
 # Development Functions
 # gitignore.io command
@@ -19,7 +18,7 @@ function towerpath() {
                 plutil -replace PATH -string "${val}" "${plistpath}";
             fi
             ;;
-        current)            
+        current)
             echo $current
             ;;
 

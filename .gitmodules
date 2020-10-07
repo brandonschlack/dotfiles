@@ -17,3 +17,6 @@
 [submodule "zsh/zsh_custom/plugins/forgit"]
 	path = zsh/zsh_custom/plugins/forgit
 	url = https://github.com/wfxr/forgit.git
+[submodule "tmux/oh-my-tmux"]
+	path = tmux/oh-my-tmux
+	url = https://github.com/gpakosz/.tmux.git

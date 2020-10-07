@@ -72,6 +72,21 @@ ZSH_THEME="brandonschlack"
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
+# Plugin configuration
+
+# Set fzf installation directory path
+# export FZF_BASE=/path/to/fzf/install/dir
+export FZF_BASE=/usr/bin/fzf
+
+# Uncomment to set the FZF_DEFAULT_COMMAND
+# export FZF_DEFAULT_COMMAND='<your fzf default commmand>'
+
+# Uncomment the following line to disable fuzzy completion
+# DISABLE_FZF_AUTO_COMPLETION="true"
+
+# Uncomment the following line to disable key bindings (CTRL-T, CTRL-R, ALT-C)
+# DISABLE_FZF_KEY_BINDINGS="true"
+
 # Enable nvm auto use command for zsh-nvm
 export NVM_AUTO_USE=true
 
@@ -89,6 +104,8 @@ plugins=(
   osx
   brew
   git
+  fzf
+  forgit
   zsh-nvm
   node
   npm

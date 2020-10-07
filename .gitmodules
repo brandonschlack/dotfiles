@@ -14,3 +14,6 @@
 [submodule "zsh/zsh_custom/plugins/zsh-nvm"]
 	path = zsh/zsh_custom/plugins/zsh-nvm
 	url = https://github.com/lukechilds/zsh-nvm.git
+[submodule "zsh/zsh_custom/plugins/forgit"]
+	path = zsh/zsh_custom/plugins/forgit
+	url = https://github.com/wfxr/forgit.git

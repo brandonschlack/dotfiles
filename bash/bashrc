@@ -79,6 +79,6 @@ export SCM_GIT_SHOW_MINIMAL_INFO=true
 source "$BASH_IT"/bash_it.sh
 
 # Automatically start tmux session on SSH, or re-attach to one if it exists
-# if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
-#   tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
-# fi
+if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
+  tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
+fi

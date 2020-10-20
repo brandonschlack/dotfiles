@@ -22,9 +22,8 @@
     ~/.oh-my-zsh: 'zsh/oh-my-zsh'
     ~/.zsh_custom: 'zsh/zsh_custom'
     ~/.zshrc: 'zsh/zshrc'
-    ~/.oh-my-tmux: 'tmux/oh-my-tmux'
-    ~/.tmux.conf.local: 'tmux/tmux.local'
-    ~/.tmux.conf: 'tmux/oh-my-tmux/.tmux.conf'
+    ~/.tmux.conf: 'tmux/tmux.conf'
+    ~/.tmux/: 'tmux/tmux-theme.tmux'
     ~/.brew: 'brew'
 
 - brew:

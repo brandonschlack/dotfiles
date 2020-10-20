@@ -121,8 +121,8 @@ plugins=(
   yarn
   tmux
   jira
-  z
   zsh_reload
+  zsh-interactive-cd
 )
 
 source $ZSH/oh-my-zsh.sh

@@ -4,10 +4,7 @@
 ## Local
 export WORK_ROOT=$HOME/Documents/Development/Projects/Internet_Brands
 fodors=$WORK_ROOT/fodors.com
-alias fd='cd $fodors'
 fodors_wordpress=$WORK_ROOT/fodors.com-wordpress
-alias fw='cd $fodors_wordpress'
-alias fwt='cd $fodors_wordpress/wp-content/themes/fodors'
 alias sdf='ssh dev-fodors'
 
 ## Remote

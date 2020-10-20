@@ -1,0 +1,1 @@
+./zsh/zsh_custom/plugins/fzf-marks/fzf-marks.plugin.bash

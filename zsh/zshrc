@@ -112,6 +112,7 @@ plugins=(
   git
   fzf
   forgit
+  fzf-marks
   zsh-nvm
   node
   npm

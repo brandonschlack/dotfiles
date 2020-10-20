@@ -23,3 +23,6 @@
 [submodule "bash/bash_it"]
 	path = bash/bash_it
 	url = https://github.com/Bash-it/bash-it.git
+[submodule "zsh/zsh_custom/plugins/fzf-marks"]
+	path = zsh/zsh_custom/plugins/fzf-marks
+	url = https://github.com/urbainvaes/fzf-marks.git

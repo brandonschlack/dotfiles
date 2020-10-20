@@ -2,6 +2,8 @@
 #
 # Source forgit
 [ -f $HOME/.forgit/forgit.plugin.sh ] && source $HOME/.forgit/forgit.plugin.sh
+# Source fzf-marks
+[ -f $BASH_IT_CUSTOM/plugins/fzf-marks/fzf-marks.plugin.bash ] && source $BASH_IT_CUSTOM/plugins/fzf-marks/fzf-marks.plugin.bash
 
 # User specific aliases and functions
 alias sudo='sudo '

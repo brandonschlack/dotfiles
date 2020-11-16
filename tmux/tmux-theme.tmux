@@ -75,7 +75,7 @@ RS="$host_keys#[fg=$FG,bg=$gray]%b %d %I:%M %p #[fg=$pink,bg=$gray]$left_arrow_i
 tmux_set status-right "$RS"
 
 # Window status
-tmux_set window-status-format " #I #W "
+tmux_set window-status-format "#[fg=$FG,bg=$BG] #I #W "
 tmux_set window-status-current-format "#[fg=$BG,bg=$light_purple]$right_arrow_icon#[fg=$FG,bg=$light_purple,bold] #I #W #[fg=$light_purple,bg=$BG,nobold]$right_arrow_icon"
 
 # Window separator

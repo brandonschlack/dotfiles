@@ -25,6 +25,7 @@
     ~/.tmux.conf: 'tmux/tmux.conf'
     ~/.tmux/: 'tmux/tmux-theme.tmux'
     ~/.brew: 'brew'
+    ~/.local/bin: 'scripts'
 
 - brew:
     - git

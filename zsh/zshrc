@@ -91,7 +91,8 @@ export FZF_BASE=/usr/bin/fzf
 export NVM_AUTO_USE=true
 
 # Automatically start tmux
-ZSH_TMUX_AUTOSTART=true
+# ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_CUSTOM_AUTOSTART=true
 
 # Sets the -CC option for iTerm2 tmux integration
 # export ZSH_TMUX_ITERM2=true
@@ -120,6 +121,7 @@ plugins=(
   ssh
   yarn
   tmux
+  tmuxinator
   jira
   zsh_reload
   zsh-interactive-cd
@@ -162,3 +164,12 @@ export HOMEBREW_BUNDLE_FILE="${HOME}/.brew/Brewfile"
 # iTerm2 Shell intergration
 export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=true
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source $HOME/.iterm2_shell_integration.zsh
+
+# Autostart if not already in tmux and enabled.
+if [[ -z "$TMUX" && "$ZSH_TMUX_CUSTOM_AUTOSTART" == "true" && -z "$INSIDE_EMACS" && -z "$EMACS" && -z "$VIM" ]]; then
+  # Actually don't autostart if we already did and multiple autostarts are disabled.
+  if [[ "$ZSH_TMUX_AUTOSTART_ONCE" == "false" || "$ZSH_TMUX_AUTOSTARTED" != "true" ]]; then
+    export ZSH_TMUX_AUTOSTARTED=true
+    _zsh_tmux_plugin_run
+  fi
+fi

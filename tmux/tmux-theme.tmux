@@ -39,7 +39,7 @@ tmux_set status on
 
 # Basic status bar colors
 tmux_set status-fg "$FG"
-tmux_set status-bg "default"
+tmux_set status-style bg=default
 tmux_set status-attr none
 
 # tmux-prefix-highlight

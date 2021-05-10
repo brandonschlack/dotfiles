@@ -12,6 +12,7 @@ js-beautify
 less
 lodash-cli
 modernizr
+ntl
 polyjuice
 prettier
 prettydiff
@@ -22,3 +23,4 @@ typescript
 uglify-js
 webpack
 yarn
+yo

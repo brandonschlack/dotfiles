@@ -97,6 +97,9 @@ ZSH_TMUX_CUSTOM_AUTOSTART=true
 # Sets the -CC option for iTerm2 tmux integration
 # export ZSH_TMUX_ITERM2=true
 
+# GPG
+export RECEPIENT='brandonschlack@gmail.com'
+
 # Would you like to use another custom folder than $ZSH/custom?
 ZSH_CUSTOM="/Users/$USER/.zsh_custom"
 
@@ -106,6 +109,8 @@ ZSH_CUSTOM="/Users/$USER/.zsh_custom"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  gpg-agent
+  zsh-secrets
   alias-finder
   common-aliases
   osx

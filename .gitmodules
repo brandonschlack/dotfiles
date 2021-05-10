@@ -23,3 +23,6 @@
 [submodule "zsh/zsh_custom/plugins/fzf-marks"]
 	path = zsh/zsh_custom/plugins/fzf-marks
 	url = https://github.com/urbainvaes/fzf-marks.git
+[submodule "zsh/zsh_custom/plugins/zsh-secrets"]
+	path = zsh/zsh_custom/plugins/zsh-secrets
+	url = https://github.com/brandonschlack/zsh-secrets.git

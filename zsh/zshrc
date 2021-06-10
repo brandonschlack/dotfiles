@@ -1,6 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
+# Use Homebrew Ruby
+export PATH=/usr/local/opt/ruby/bin:$PATH
+
 # Homebrew
 # Add completions for Homebrew
 if type brew &>/dev/null; then
@@ -11,7 +14,10 @@ if type brew &>/dev/null; then
 fi
 
 # Android Command Line Tools
-export ANDROID_SDK_ROOT="$(brew --prefix)/share/android-sdk"
+export ANDROID_SDK_ROOT="/Users/$USER/Library/Android/sdk"
+export PATH=$PATH:$ANDROID_SDK_ROOT/tools
+export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
+export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/$USER/.oh-my-zsh"
@@ -124,6 +130,7 @@ plugins=(
   node
   npm
   adb
+  python
   ssh
   yarn
   tmux

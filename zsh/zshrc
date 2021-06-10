@@ -97,9 +97,9 @@ export FZF_BASE=/usr/bin/fzf
 export NVM_AUTO_USE=true
 
 # Automatically start tmux
-if [[ -z $VSCODE ]]; then
-  ZSH_TMUX_AUTOSTART=true
-fi
+# if [[ -z $VSCODE ]]; then
+#   ZSH_TMUX_AUTOSTART=true
+# fi
 
 # Sets the -CC option for iTerm2 tmux integration
 # export ZSH_TMUX_ITERM2=true

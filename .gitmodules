@@ -26,3 +26,6 @@
 [submodule "zsh/zsh_custom/plugins/zsh-secrets"]
 	path = zsh/zsh_custom/plugins/zsh-secrets
 	url = https://github.com/brandonschlack/zsh-secrets.git
+[submodule "zsh/zsh_custom/themes/powerlevel10k"]
+	path = zsh/zsh_custom/themes/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git

@@ -21,6 +21,7 @@
     ~/.bashrc: 'bash/bashrc'
     ~/.oh-my-zsh: 'zsh/oh-my-zsh'
     ~/.zsh_custom: 'zsh/zsh_custom'
+    ~/.p10k.zsh: 'zsh/p10k'
     ~/.zshrc: 'zsh/zshrc'
     ~/.tmux.conf: 'tmux/tmux.conf'
     ~/.tmux/: 'tmux/tmux-theme.tmux'

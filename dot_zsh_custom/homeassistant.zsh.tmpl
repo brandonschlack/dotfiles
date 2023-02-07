@@ -1,0 +1,13 @@
+export HASS_SERVER="{{ onepasswordRead "op://Home/Home Assistant/CLI/server" }}"
+export HASS_TOKEN="{{ onepasswordRead "op://Home/Home Assistant/CLI/token" }}"
+eval "$(_HASS_CLI_COMPLETE=source_zsh hass-cli)"
+
+alias hacli='hass-cli'
+alias hasscli='hass-cli'
+alias hass-cli_check_config='hass-cli service call homeassistant.check_config'
+alias hass-cli_restart='hass-cli service call homeassistant.restart'
+alias hass-cli_states='hass-cli state list'
+alias hass-cli_devices='hass-cli device list'
+alias hass-cli_entities='hass-cli entity list'
+alias hass-cli_syshealth='hass-cli system health'
+alias hass-cli_syslog='hass-cli system log'

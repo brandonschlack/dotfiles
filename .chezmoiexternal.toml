@@ -28,6 +28,10 @@
     type = "git-repo"
     url = "https://github.com/lukechilds/zsh-better-npm-completion"
     refreshPeriod = "168h"
+[".zsh_custom/plugins/zsh-ssh"]
+    type = "git-repo"
+    url = "https://github.com/sunlei/zsh-ssh"
+    refreshPeriod = "168h"
 [".zsh_custom/themes/powerlevel10k"]
     type = "git-repo"
     url = "https://github.com/romkatv/powerlevel10k"

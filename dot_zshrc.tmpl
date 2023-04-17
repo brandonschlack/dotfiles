@@ -1,6 +1,10 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
+# Use Volta for Node.js
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+
 # Use Homebrew Python
 export PATH=/usr/local/opt/python/libexec/bin:$PATH
 
@@ -135,7 +139,7 @@ plugins=(
   fzf-marks
   alias-finder
   common-aliases
-  zsh-nvm
+  volta
   zsh-better-npm-completion
   zsh-ssh
   brew

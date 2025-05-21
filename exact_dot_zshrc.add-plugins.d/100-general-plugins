@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+
+zgenom ohmyzsh plugins/direnv
+zgenom ohmyzsh plugins/zsh-interactive-cd
+zgenom load atuinsh/atuin

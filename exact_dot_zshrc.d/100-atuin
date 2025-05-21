@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+
+bindkey '^r' atuin-search

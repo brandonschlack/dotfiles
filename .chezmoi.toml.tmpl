@@ -8,3 +8,11 @@
 [data]
     osid = {{ $osid | quote }}
     email = {{ $email | quote }}
+
+[editor]
+    command = "code"
+    args = ["--wait"]
+
+[diff]
+    command = "code"
+    arg = ["--wait", "--diff", "--new-window"]

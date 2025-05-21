@@ -1,38 +1,6 @@
-[".oh-my-zsh"]
+[".zgenom"]
     type = "git-repo"
-    url = "https://github.com/ohmyzsh/ohmyzsh"
-    refreshPeriod = "168h"
-[".zsh_custom/plugins/forgit"]
-    type = "archive"
-    url = "https://github.com/wfxr/forgit/archive/master.tar.gz"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
-[".zsh_custom/plugins/fzf-tab"]
-    type = "archive"
-    url = "https://github.com/Aloxaf/fzf-tab/archive/master.tar.gz"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
-[".zsh_custom/plugins/fzf-marks"]
-    type = "archive"
-    url = "https://github.com/urbainvaes/fzf-marks/archive/master.tar.gz"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
-[".zsh_custom/plugins/zsh-nvm"]
+    url = "https://github.com/jandamm/zgenom"
+[".zsh-quickstart-kit"]
     type = "git-repo"
-    url = "https://github.com/lukechilds/zsh-nvm"
-    refreshPeriod = "168h"
-[".zsh_custom/plugins/zsh-better-npm-completion"]
-    type = "git-repo"
-    url = "https://github.com/lukechilds/zsh-better-npm-completion"
-    refreshPeriod = "168h"
-[".zsh_custom/plugins/zsh-ssh"]
-    type = "git-repo"
-    url = "https://github.com/sunlei/zsh-ssh"
-    refreshPeriod = "168h"
-[".zsh_custom/themes/powerlevel10k"]
-    type = "git-repo"
-    url = "https://github.com/romkatv/powerlevel10k"
-    refreshPeriod = "168h"
+    url = "https://github.com/unixorn/zsh-quickstart-kit"

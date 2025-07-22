@@ -1,0 +1,18 @@
+packages:
+  linux:
+    nixpkgs:
+      - atuin
+      - bat
+      - cheat
+      - delta
+      - direnv
+      - eza
+      - fd
+      - fzf
+      - jq
+      - jnv
+      - navi
+      - pipx
+      - ripgrep
+      - tailspin
+      - yazi

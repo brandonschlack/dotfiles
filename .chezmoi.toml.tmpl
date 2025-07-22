@@ -1,6 +1,9 @@
 {{- $osid := .chezmoi.os -}}
 {{- if hasKey .chezmoi.osRelease "id" -}}
 {{-   $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
+{{-   if (and (eq .chezmoi.osRelease.id "debian") (contains "Raspberry Pi" (output "cat" "/sys/firmware/devicetree/base/model"))) -}}
+{{-     $osid = printf "%s-raspi" .chezmoi.os -}}
+{{-   end -}}
 {{- end -}}
 
 {{- $email := promptStringOnce . "email" "Email address" -}}

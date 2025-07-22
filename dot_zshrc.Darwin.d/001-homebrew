@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+
+# Homebrew
+export HOMEBREW_BUNDLE_FILE_GLOBAL="${XDG_CONFIG_HOME:-$HOME/.config}/homebrew/Brewfile"
+export HOMEBREW_BUNDLE_DUMP_NO_VSCODE=1

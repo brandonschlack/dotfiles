@@ -1,4 +1,0 @@
-#!/usr/bin/env zsh
-
-zgenom load lukechilds/zsh-nvm
-zgenom load lukechilds/zsh-better-npm-completion

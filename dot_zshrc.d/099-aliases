@@ -1,6 +1,8 @@
 #!/usr/bin/env zsh
 
+alias cd="z"
 alias reload="exec zsh"
-alias mdn="man -S3js"
+alias mdn="man -S 3js"
 alias wtc="curl -s 'http://whatthecommit.com/' | grep '<p>' | cut -c4-"
 alias fixql="xattr -d -r com.apple.quarantine ~/Library/QuickLook/"
+alias cz="chezmoi"

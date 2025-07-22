@@ -1,4 +1,0 @@
-#!/usr/bin/env zsh
-
-# atuin
-export ATUIN_NOBIND="true"

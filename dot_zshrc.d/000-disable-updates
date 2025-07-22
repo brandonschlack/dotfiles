@@ -1,5 +1,0 @@
-#!/usr/bin/env zsh
-
-# Disable automatic updates for Zsh Quickstart
-# Need to rewrite function to update through chezmoi
-unset DOTFILE_REFRESH_IN_DAYS

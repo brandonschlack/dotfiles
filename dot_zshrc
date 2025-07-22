@@ -662,44 +662,16 @@ _load-lastupdate-from-file() {
   echo "${interval}"
 }
 
-_update-zrc() {
-  local _zshrc_loc=~/.zshrc
-  if [[ ! -L "${_zshrc_loc}" ]]; then
-    echo ".zshrc is not a symlink, skipping dotfiles update"
-  else
-    local _link_loc=${_zshrc_loc:A};
-    if [[ "${_link_loc/${HOME}}" == "${_link_loc}" ]]; then
-      pushd $(dirname "${HOME}/${_zshrc_loc:A}");
+_update_zrc() {
+    local updates=$(chezmoi git fetch -- --porcelain)
+    if [[ -n "$updates" ]]; then
+        echo "There are updates available for your dotfiles."
+        echo "Running 'chezmoi update' to apply them."
+        chezmoi update
     else
-      pushd $(dirname ${_link_loc});
-    fi;
-      local gitroot=$(git rev-parse --show-toplevel)
-      if [[ -f "${gitroot}/.gitignore" ]]; then
-        if [[ $(grep -c zrc-kit "${gitroot}/.gitignore") -ne 0 ]]; then
-          # Cope with switch from master to main
-          zrc_current_branch=$(git rev-parse --abbrev-ref HEAD)
-          git fetch
-          # Determine the repo default branch and switch to it unless we're in testing mode
-          zrc_default_branch="$(git remote show origin | grep 'HEAD branch' | awk '{print $3}')"
-          if [[ "$zrc_current_branch" == 'master' ]]; then
-            echo "The ZSH Quickstart Kit has switched default branches to $zrc_default_branch"
-            echo "Changing branches in your local checkout from $zrc_current_branch to $zrc_default_branch"
-            git checkout "$zrc_default_branch"
-          fi
-          if [[ "$zrc_current_branch" != "$zrc_default_branch" ]]; then
-            echo "Using $zrc_current_branch instead of $zrc_default_branch"
-          fi
-          echo "---- updating $zrc_current_branch ----"
-          git pull
-          date +%s >! ~/.zrc-last-update
-          unset zrc_default_branch
-          unset zrc_current_branch
-        fi
-      else
-        echo 'No dotfiles marker found, is your dotfiles directory a valid git checkout?'
-      fi
-    popd
-  fi
+        echo "No updates available for your dotfiles."
+    fi
+    date +%s >! ~/.zrc-last-update
 }
 
 _check-for-zrc-update() {
@@ -716,7 +688,7 @@ _check-for-zrc-update() {
 
 if [[ ! -z "$DOTFILE_REFRESH_IN_DAYS" ]]; then
   _check-for-zrc-update
-  # unset DOTFILE_REFRESH_IN_DAYS
+  unset DOTFILE_REFRESH_IN_DAYS
 fi
 
 # Fix bracketed paste issue
@@ -825,7 +797,7 @@ function zrc() {
       ;;
 
     'selfupdate')
-    #   _update-zrc
+      _update-zrc
       ;;
 
     'set-setting')
@@ -834,7 +806,7 @@ function zrc() {
       ;;
 
     'update')
-    #   _update-zrc
+      _update-zrc
       zgenom update
       ;;
 

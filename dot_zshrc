@@ -664,7 +664,7 @@ _load-lastupdate-from-file() {
   echo "${interval}"
 }
 
-_update_zrc() {
+_update-zrc() {
     local updates=$(chezmoi git fetch -- --porcelain)
     if [[ -n "$updates" ]]; then
         echo "There are updates available for your dotfiles."

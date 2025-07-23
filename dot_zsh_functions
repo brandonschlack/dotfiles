@@ -11,94 +11,94 @@
 # your own fork of the quickstart kit
 
 function exists() {
-    if (($ + commands[$1])); then return 0; else return 1; fi
+  if (($ + commands[$1])); then return 0; else return 1; fi
 }
 
 # from cads@ooyala.com
 function ff() {
-    find . -type f -iname '*'$@'*' -ls
+  find . -type f -iname '*'$@'*' -ls
 }
 
 function hgrep-full() {
-    if can_haz egrep; then
-        history | egrep --color -i "$@"
-    else
-        history | grep -i "$@"
-    fi
+  if can_haz egrep; then
+    history | egrep --color -i "$@"
+  else
+    history | grep -i "$@"
+  fi
 }
 
 function envgrep() {
-    printenv | grep -i "$@"
+  printenv | grep -i "$@"
 }
 
 if ! can_haz watch; then
-    # From commandlinefu.com
-    function watch() {
-        t="$1"
-        shift
-        while test :; do
-            clear
-            date=$(date)
-            echo -e "Every $ts: $@ \t\t\t\t $date"
-            $@
-            sleep "$t"
-        done
-    }
+  # From commandlinefu.com
+  function watch() {
+    t="$1"
+    shift
+    while test :; do
+      clear
+      date=$(date)
+      echo -e "Every $ts: $@ \t\t\t\t $date"
+      $@
+      sleep "$t"
+    done
+  }
 fi
 
 # scp file to machine you're sshing into this machine from
 function mecp() {
-    scp "$@" ${SSH_CLIENT%% *}:~/Downloads/
+  scp "$@" ${SSH_CLIENT%% *}:~/Downloads/
 }
 
 function calc() {
-    awk "BEGIN{ print $* }"
+  awk "BEGIN{ print $* }"
 }
 
 function get-nr-jobs() {
-    jobs | wc -l
+  jobs | wc -l
 }
 alias get_nr_jobs="get-nr-jobs"
 
 function get_load() {
-    uptime | awk '{print $11}' | tr ',' ' '
+  uptime | awk '{print $11}' | tr ',' ' '
 }
 
 function fix_tmux_ssh_agent() {
-    if can_haz tmux; then
-        for key in SSH_AUTH_SOCK SSH_CONNECTION SSH_CLIENT; do
-            if (tmux show-environment | grep "^${key}" >/dev/null); then
-                value=$(tmux show-environment | grep "^${key}" | sed -e "s/^[A-Z_]*=//")
-                export ${key}="${value}"
-            fi
-        done
-    else
-        echo "Can't find tmux in your PATH. Install it and try again."
-    fi
+  if can_haz tmux; then
+    for key in SSH_AUTH_SOCK SSH_CONNECTION SSH_CLIENT; do
+      if (tmux show-environment | grep "^${key}" > /dev/null); then
+        value=$(tmux show-environment | grep "^${key}" | sed -e "s/^[A-Z_]*=//")
+        export ${key}="${value}"
+      fi
+    done
+  else
+    echo "Can't find tmux in your PATH. Install it and try again."
+  fi
 }
 
 function scan24() {
-    if can_haz nmap; then
-        # Probe a /24 for hosts
-        nmap -sP ${1}/24
-    else
-        echo "Can't find nmap in your PATH - install it and try again."
-    fi
+  if can_haz nmap; then
+    # Probe a /24 for hosts
+    nmap -sP ${1}/24
+  else
+    echo "Can't find nmap in your PATH - install it and try again."
+  fi
 }
 
 if ! can_haz nj; then
-    # Netjoin - Block until a network connection is obtained.
-    # Originally from https://github.com/bamos/dotfiles/blob/master/.funcs
-    function nj() {
-        while true; do
-            ping -c 1 8.8.8.8 &>/dev/null && break
-            sleep 1
-        done
-    }
+  # Netjoin - Block until a network connection is obtained.
+  # Originally from https://github.com/bamos/dotfiles/blob/master/.funcs
+  function nj() {
+    while true; do
+      ping -c 1 8.8.8.8 &> /dev/null && break
+      sleep 1
+    done
+  }
 fi
 
 # lists zombie processes
 function zombie() {
-    ps aux | awk '{if ($8=="Z") { print $2 }}'
+  ps aux | awk '{if ($8=="Z") { print $2 }}'
 }
 alias zombies=zombie

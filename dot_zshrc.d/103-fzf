@@ -69,12 +69,12 @@ _fzf_compgen_path() {
 
 export FZF_DEFAULT_OPTS=$(printf '%s\n' "${fzf_default_opts[@]}")
 export FZF_CTRL_T_OPTS="
-  --walker-skip .git,node_modules,target
-  --preview '${FZF_PREVIEW}'
-  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+    --walker-skip .git,node_modules,target
+    --preview '${FZF_PREVIEW}'
+    --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 export FZF_ALT_C_OPTS="
-  --walker-skip .git,node_modules,target
-  --preview 'eza -1 --color=always {}'"
+    --walker-skip .git,node_modules,target
+    --preview 'eza -1 --color=always {}'"
 
 # ─── Fzf-tab Configuration ────────────────────────────────────────────────────
 

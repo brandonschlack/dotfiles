@@ -2,9 +2,9 @@
 
 # set PATH so it includes user's private bin if it exists
 if [[ -d "${XDG_CONFIG_HOME:-$HOME}/bin" ]]; then
-  export PATH="$PATH:${XDG_CONFIG_HOME:-$HOME}/bin"
+    export PATH="$PATH:${XDG_CONFIG_HOME:-$HOME}/bin"
 fi
 
 if [[ -d "${XDG_CONFIG_HOME:-$HOME}/.local/bin" ]]; then
-  export PATH="$PATH:${XDG_CONFIG_HOME:-$HOME}/.local/bin"
+    export PATH="$PATH:${XDG_CONFIG_HOME:-$HOME}/.local/bin"
 fi

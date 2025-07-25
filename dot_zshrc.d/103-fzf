@@ -45,7 +45,7 @@ export FZF_PREVIEW_WINDOW=':hidden'
 # export FZF_PREVIEW_ADVANCED=false
 
 # Color scheme for fzf
-export FZF_COLOR_SCHEME="--color='fg:#f8f8f2,bg:#22212c,hl:#8aff80,fg+:#f8f8f2,bg+:#454158,hl+:#ffca80,info:#9580ff,prompt:#8aff80,pointer:#ff80bf,marker:#ff80bf,spinner:#ff80bf,header:#80ffea'"
+export FZF_COLOR_SCHEME="--color=fg:#f8f8f2,bg:#22212c,hl:#8aff80,fg+:#f8f8f2,bg+:#454158,hl+:#ffca80,info:#9580ff,prompt:#8aff80,pointer:#ff80bf,marker:#ff80bf,spinner:#ff80bf,header:#80ffea"
 
 fzf_default_opts+=(
     "--layout=reverse"

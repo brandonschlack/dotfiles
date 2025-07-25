@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+
+if [[ -f "${XDG_CONFIG_HOME:-$HOME}/.fzf.zsh" ]]; then
+    source "${XDG_CONFIG_HOME:-$HOME}/.fzf.zsh"
+else
+    source <(fzf --zsh)
+fi

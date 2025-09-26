@@ -1,0 +1,66 @@
+# Personal EditorConfig
+# http://EditorConfig.org
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+end_of_line              = lf
+trim_trailing_whitespace = true
+insert_final_newline     = true
+
+[*]
+indent_style = space
+indent_size  = 4
+
+[*.{yml,yaml,json,jsonc}]
+indent_style = space
+indent_size  = 2
+
+# Google HTML/CSS Styleguide
+# https://google.github.io/styleguide/htmlcssguide.xml
+[*.{html,css,scss}]
+# indent_size = 2
+charset = utf-8
+
+[*.{js,jsx,ts,tsx}]
+charset = utf-8
+
+# CoffeeScript Styleguide
+[*.{coffee,cson}]
+indent_style = space
+indent_size  = 2
+charset      = utf-8
+
+# PHP-FIG: PHP Standards Recommendations
+# PSR-2: Coding Style Guide
+# http://www.php-fig.org/psr/psr-2/
+[*.php]
+indent_style = space
+indent_size  = 4
+charset      = utf-8
+
+# Python: 4 space indentation
+[*.py]
+indent_style         = space
+indent_size          = 4
+trim_trailing_spaces = true
+max_line_length      = 80
+
+# Markdown: 4 space indentation
+[*.{md,rmd,mkd,mkdn,mdwn,mdown,markdown,litcoffee}]
+tab_width = 4
+
+# Pug, FKA Jade
+[*.{jade,pug}]
+trim_trailing_whitespace = false
+
+[*.{sh,bash,zsh}]
+indent_style       = space
+indent_size        = 4
+shell_variant      = posix
+binary_next_line   = true
+switch_case_indent = true
+space_redirects    = true
+keep_padding       = true
+function_next_line = false
+never_split        = true

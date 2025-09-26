@@ -1,0 +1,7 @@
+{
+  "files.associations": {
+    "dot_*": "shellscript",
+    "[0-9][0-9][0-9]-*": "shellscript",
+    "dot_editorconfig": "editorconfig"
+  }
+}

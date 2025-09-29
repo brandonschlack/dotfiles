@@ -1,18 +1,22 @@
 packages:
   linux:
+    apt: []
     nixpkgs:
-      - atuin
-      - bat
-      - cheat
-      - delta
-      - direnv
-      - eza
-      - fd
-      - fzf
-      - jq
-      - jnv
-      - navi
-      - pipx
-      - ripgrep
-      - tailspin
-      - yazi
+    - atuin
+    - bat
+    - cheat
+    - delta
+    - direnv
+    - eza
+    - fd
+    - jq
+    - jnv
+    - navi
+    - neovim
+    - pipx
+    - ripgrep
+    - tailspin
+    - yazi
+    - zoxide
+  nixpkgs-unstable:
+    - fzf

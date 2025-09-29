@@ -2,3 +2,15 @@
   type: git-repo
   url: https://github.com/jandamm/zgenom
   refreshPeriod: 168h
+".iterm2_shell_integration.zsh":
+  type: file
+  url: https://iterm2.com/shell_integration/zsh
+  refreshPeriod: 168h
+".iterm2":
+  type: archive
+  url: https://github.com/gnachman/iTerm2-shell-integration/archive/master.tar.gz
+  refreshPeriod: 168h
+  exact: true
+  stripComponents: 2
+  include:
+  - "*/utilities/**"

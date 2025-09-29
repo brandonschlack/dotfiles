@@ -1,15 +1,44 @@
-{{- $osid := .chezmoi.os -}}
-{{- if hasKey .chezmoi.osRelease "id" -}}
-{{-   $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
-{{-   if (and (eq .chezmoi.osRelease.id "debian") (contains "Raspberry Pi" (output "cat" "/sys/firmware/devicetree/base/model"))) -}}
-{{-     $osid = printf "%s-raspi" .chezmoi.os -}}
-{{-   end -}}
+{{- $swDistro := .chezmoi.os -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $swDistro = (output "sw_vers" "--productName") | trim -}}
+{{- else if eq .chezmoi.os "linux" -}}
+{{-   $swDistro = .chezmoi.osRelease.id | default .chezmoi.os -}}
+{{- else if eq .chezmoi.os "windows" -}}
+{{-   $swDistro = (output "powershell.exe" "-NoProfile" "-NonInteractive" "-Command" "(Get-CimInstance -Class Win32_OperatingSystem).Caption") | trim -}}
 {{- end -}}
+
+{{- $hwModel := "unknown" -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $hwModel = (output "sysctl" "-n" "hw.model") | trim -}}
+{{- else if eq .chezmoi.os "linux" -}}
+{{-   $hwModel = (output "cat" "/sys/firmware/devicetree/base/model") | trim -}}
+{{- else if eq .chezmoi.os "windows" -}}
+{{-   $hwModel = (output "powershell.exe" "-NoProfile" "-NonInteractive" "-Command" "(Get-CimInstance -Class Win32_ComputerSystem).Model") | trim -}}
+{{- end -}}
+
+{{- $chassisType := "desktop" }}
+{{- if eq .chezmoi.os "darwin" }}
+{{-   if contains "MacBook" $hwModel }}
+{{-     $chassisType = "laptop" }}
+{{-   else }}
+{{-     $chassisType = "desktop" }}
+{{-   end }}
+{{- else if eq .chezmoi.os "linux" }}
+{{-   $chassisType := "server" }}
+{{- else if eq .chezmoi.os "windows" }}
+{{-   $chassisType = (output "powershell.exe" "-NoProfile" "-NonInteractive" "-Command" "if ((Get-CimInstance -Class Win32_Battery | Measure-Object).Count -gt 0) { Write-Output 'laptop' } else { Write-Output 'desktop' }") | trim }}
+{{- end }}
 
 {{- $email := promptStringOnce . "email" "Email address" -}}
 
 data:
-  osid: {{ $osid | quote }}
+  sw:
+    os: {{ .chezmoi.os | quote }}
+    distro: {{ $swDistro | quote }}
+  hw:
+    chassis: {{ $chassisType | quote }}
+    model: {{ $hwModel | quote }}
+    arch: {{ .chezmoi.arch | replace "amd64" "x86_64"| replace "aarch64" "arm64" | quote }}
   email: {{ $email | quote }}
 editor:
   command: code

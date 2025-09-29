@@ -2,6 +2,9 @@
   "files.associations": {
     "dot_*": "shellscript",
     "[0-9][0-9][0-9]-*": "shellscript",
-    "dot_editorconfig": "editorconfig"
+    "dot_editorconfig": "editorconfig",
+    "**/.chezmoiexternals/*.yaml": "goyaml",
+    "**/.chezmoi.yaml.tmpl": "goyaml",
+    "**/.chezmoiignore": "gotemplate"
   }
 }

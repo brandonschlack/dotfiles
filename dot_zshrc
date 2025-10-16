@@ -660,7 +660,7 @@ _load-lastupdate-from-file() {
     else
         local last_update=0
     fi
-    local interval="$(expr ${now} - ${last_update})"
+    local interval=$(( ${now} - ${last_update} ))
     echo "${interval}"
 }
 
@@ -677,12 +677,12 @@ _update-zrc() {
 }
 
 _check-for-zrc-update() {
-    local day_seconds=$(expr 24 \* 60 \* 60)
-    local refresh_seconds=$(expr "${day_seconds}" \* "${DOTFILE_REFRESH_IN_DAYS}")
+    local day_seconds=$(( 24 * 60 * 60))
+    local refresh_seconds=$((${day_seconds} * ${DOTFILE_REFRESH_IN_DAYS}))
     local last_dotfiles_update=$(_load-lastupdate-from-file ~/.zrc-last-update)
 
-    if [ ${last_dotfiles_update} -gt ${refresh_seconds} ]; then
-        echo "It has been $(expr ${last_dotfiles_update} / ${day_seconds}) days since your dotfiles were updated"
+    if [[ ${last_dotfiles_update} -gt ${refresh_seconds} ]]; then
+        echo "It has been $(( ${last_dotfiles_update} / ${day_seconds})) days since your dotfiles were updated"
         echo "Checking for dotfiles updates..."
         _update-zrc
     fi

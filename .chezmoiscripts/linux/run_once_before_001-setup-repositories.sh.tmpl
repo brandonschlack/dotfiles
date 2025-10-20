@@ -1,0 +1,100 @@
+{{- if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env sh
+
+set -e
+
+{{- if (eq .chezmoi.osRelease.id "debian" "ubuntu" "pop") }}
+echo "Setting up sources for Debian/Ubuntu"
+echo "-------------------------------------"
+if [ ! -f /etc/apt/sources.list.d/1password.list ]; then
+    echo "Setting up 1password CLI source"
+
+    sudo apt update && sudo apt install -y curl gpg
+
+    curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) $(. /etc/os-release && echo "$VERSION_CODENAME") main" | \
+    sudo tee /etc/apt/sources.list.d/1password.list
+
+    sudo mkdir -p /etc/debsig/policies/AC2D62742012EA22/
+    curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol | sudo tee /etc/debsig/policies/AC2D62742012EA22/1password.pol
+    sudo mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22
+    curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
+
+    sudo apt update
+
+    echo "Installed 1password CLI source"
+    echo "-------------------------------------"
+fi
+if [ ! -f /etc/apt/sources.list.d/github-cli.list ]; then
+    echo "Setting up GitHub CLI source"
+
+    sudo apt update && sudo apt install -y wget
+
+    sudo mkdir -p -m 755 /etc/apt/keyrings
+    out=$(mktemp) && wget -nv -O$out https://cli.github.com/packages/githubcli-archive-keyring.gpg
+    cat $out | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null
+    sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg
+
+    sudo mkdir -p -m 755 /etc/apt/sources.list.d
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages $(. /etc/os-release && echo "$VERSION_CODENAME") main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+
+    sudo apt update
+
+    echo "Installed GitHub CLI source"
+    echo "-------------------------------------"
+fi
+if [ ! -f /etc/apt/sources.list.d/azlux.list ]; then
+    echo "Setting up Azlux source"
+
+    sudo apt update && sudo apt install -y wget
+
+    cat > /etc/apt/sources.list.d/azlux.sources << EOF
+Types: deb
+URIs: http://packages.azlux.fr/debian/
+Suites: bookworm
+Components: main
+Signed-By: /usr/share/keyrings/azlux-archive-keyring.gpg
+EOF
+
+    sudo wget -O /usr/share/keyrings/azlux-archive-keyring.gpg  https://azlux.fr/repo.gpg
+
+    sudo apt update
+
+    echo "Installed Azlux source"
+    echo "-------------------------------------"
+fi
+if [ ! -f /etc/apt/sources.list.d/docker.list ]; then
+    echo "Setting up Docker source"
+
+    sudo apt update && sudo apt install -y ca-certificates curl
+    sudo install -m 0755 -d /etc/apt/keyrings
+    sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+    sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian $(. /etc/os-release && echo "$VERSION_CODENAME") stable" |sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+    sudo apt update
+
+    echo "Installed Docker source"
+    echo "-------------------------------------"
+fi
+if [ ! -f /etc/apt/sources.list.d/cloudflared.list ]; then
+    echo "Setting up Cloudflared source"
+
+    sudo apt install -y curl
+
+    sudo mkdir -p --mode=0755 /usr/share/keyrings
+    curl -fsSL https://pkg.cloudflare.com/cloudflare-main.gpg | sudo tee /usr/share/keyrings/cloudflare-main.gpg >/dev/null
+
+    echo "deb [signed-by=/usr/share/keyrings/cloudflare-main.gpg] https://pkg.cloudflare.com/cloudflared $(. /etc/os-release && echo "$VERSION_CODENAME") main" | sudo tee /etc/apt/sources.list.d/cloudflared.list
+
+    sudo apt update
+
+    echo "Installed Cloudflared source"
+    echo "-------------------------------------"
+fi
+
+echo "Finished setting up sources for Debian/Ubuntu"
+echo "-------------------------------------"
+{{- end }}
+{{- end -}}

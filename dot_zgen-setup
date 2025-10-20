@@ -125,9 +125,6 @@ load-default-plugin-list() {
 
     # ─── Fzf ──────────────────────────────────────────────────────────────────────
 
-    # A utility tool powered by fzf for using git interactively.
-    zgenom load wfxr/forgit
-
     # A plugin to manage bookmarks in bash and zsh
     zgenom load urbainvaes/fzf-marks
 
@@ -166,6 +163,9 @@ load-default-plugin-list() {
         fi
 
     fi
+
+    # A utility tool powered by fzf for using git interactively.
+    zgenom load wfxr/forgit
 
     # A set of shell functions to make it easy to install small apps and
     # utilities distributed with pip.

@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+if [ ! -f "${HOME}/.nvm/nvm.sh" ]; then
+    echo "nvm not found, installing..."
+    PROFILE=/dev/null bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v{{ .packages.versions.nvm }}/install.sh | bash'
+else
+    exit 0;
+fi

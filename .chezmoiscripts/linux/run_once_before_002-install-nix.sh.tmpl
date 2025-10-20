@@ -1,0 +1,21 @@
+{{- if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env sh
+
+set -e
+
+{{- if (eq .chezmoi.osRelease.id "debian" "ubuntu" "pop") }}
+echo "-------------------------------------"
+echo "Installing nix"
+
+curl --proto '=https' --tlsv1.2 -sSf -L https://artifacts.nixos.org/experimental-installer |   sh -s -- install --no-confirm
+
+echo 'experimental-features = nix-command flakes' | sudo tee -a /etc/nix/nix.conf >/dev/null
+echo 'auto-optimise-store = true' | sudo tee -a /etc/nix/nix.conf >/dev/null
+echo 'max-jobs = auto' | sudo tee -a /etc/nix/nix.conf >/dev/null
+
+. /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+
+echo "Finished installing nix"
+echo "-------------------------------------"
+{{- end }}
+{{- end -}}

@@ -1,22 +1,38 @@
 packages:
+  darwin:
+    brews: []
+    casks: []
+    mas: []
   linux:
-    apt: []
+    apt:
+      - cloudflared
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
+      - gh
+      - 1password-cli
+      - duf
+      - btop
     nixpkgs:
-    - atuin
-    - bat
-    - cheat
-    - delta
-    - direnv
-    - eza
-    - fd
-    - jq
-    - jnv
-    - navi
-    - neovim
-    - pipx
-    - ripgrep
-    - tailspin
-    - yazi
-    - zoxide
-  nixpkgs-unstable:
-    - fzf
+      - atuin
+      - bat
+      - cheat
+      - delta
+      - direnv
+      - eza
+      - fd
+      - fzf
+      - jq
+      - jnv
+      - lazydocker
+      - lazygit
+      - navi
+      - pipx
+      - ripgrep
+      - tailspin
+      - yazi
+      - zoxide
+  versions:
+    nvm: "0.40.3"

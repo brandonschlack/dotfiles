@@ -1,0 +1,17 @@
+{{ if stat (joinPath .chezmoi.homeDir ".ssh" "id_rsa") }}
+".themes/dracula-pro":
+  type: git-repo
+  url: git@github.com:brandonschlack/dracula-pro.git
+{{ end }}
+".local/share/mc/":
+  type: archive
+  url: https://github.com/dracula/midnight-commander/archive/refs/heads/master.zip
+  stripComponents: 1
+  include:
+    - "*/skins/**"
+  refreshPeriod: 672h
+".config/bat/themes/Dracula.tmTheme":
+  type: archive-file
+  url: https://github.com/dracula/sublime/archive/refs/heads/master.zip
+  path: "sublime-master/Dracula.tmTheme"
+  refreshPeriod: 672h

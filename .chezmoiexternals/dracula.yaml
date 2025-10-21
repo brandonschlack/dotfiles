@@ -1,8 +1,6 @@
-{{ if stat (joinPath .chezmoi.homeDir ".ssh" "id_rsa") }}
 ".themes/dracula-pro":
   type: git-repo
   url: git@github.com:brandonschlack/dracula-pro.git
-{{ end }}
 ".local/share/mc/":
   type: archive
   url: https://github.com/dracula/midnight-commander/archive/refs/heads/master.zip

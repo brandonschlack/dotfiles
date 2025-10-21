@@ -1,6 +1,7 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/refs/tags/v0.55.1/schema/config.json
 
 gui:
+  nerdFontsVersion: "2"
   # DRACULA
   theme:
     activeBorderColor:
@@ -8,34 +9,28 @@ gui:
       - bold
     inactiveBorderColor:
       - "#BD93F9"
-
     searchingActiveBorderColor:
       - "#8BE9FD"
       - bold
-
     optionsTextColor:
       - "#6272A4"
-
     selectedLineBgColor:
       - "#6272A4"
-
     inactiveViewSelectedLineBgColor:
       - bold
-
     cherryPickedCommitFgColor:
       - "#6272A4"
-
     cherryPickedCommitBgColor:
       - "#8BE9FD"
-
     markedBaseCommitFgColor:
       - "#8BE9FD"
-
     markedBaseCommitBgColor:
       - "#F1FA8C"
-
     unstagedChangesColor:
       - "#FF5555"
-
     defaultFgColor:
       - "#F8F8F2"
+git:
+  paging:
+    colorArg: always
+    pager: delta --diff-so-fancy --dark --paging=never

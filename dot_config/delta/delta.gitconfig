@@ -1,0 +1,15 @@
+[include]
+path = ~/.config/delta/themes.gitconfig
+
+[include]
+path = ~/.config/delta/themes.vampire-bat.gitconfig
+
+[delta]
+features = vampire-bat
+side-by-side = false
+navigate = true
+hyperlinks = true
+hyperlinks-file-link-format = "vscode://file/{path}:{line}"
+
+[alias]
+diff-sbs = -c delta.features=side-by-side diff

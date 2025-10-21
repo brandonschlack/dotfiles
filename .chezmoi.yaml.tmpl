@@ -29,7 +29,9 @@
 {{-   $chassisType = (output "powershell.exe" "-NoProfile" "-NonInteractive" "-Command" "if ((Get-CimInstance -Class Win32_Battery | Measure-Object).Count -gt 0) { Write-Output 'laptop' } else { Write-Output 'desktop' }") | trim }}
 {{- end }}
 
+{{- $fullName := promptStringOnce . "name" "Full Name" -}}
 {{- $email := promptStringOnce . "email" "Email address" -}}
+{{- $githubUsername := promptStringOnce . "github.username" "Github Username" -}}
 
 encryption: age
 age:
@@ -43,14 +45,18 @@ data:
     chassis: {{ $chassisType | quote }}
     model: {{ $hwModel | quote }}
     arch: {{ .chezmoi.arch | replace "amd64" "x86_64"| replace "aarch64" "arm64" | quote }}
+  name: {{ $fullName | quote }}
   email: {{ $email | quote }}
+  github:
+    username: {{ $githubUsername | quote }}
 editor:
   command: code
   args:
   - "--wait"
+status:
+  exclude:
+    - "scripts"
 diff:
-  command: code
-  args:
-  - "--wait"
-  - "--diff"
-  - "--new-window"
+  exclude:
+    - "scripts"
+  pager: delta

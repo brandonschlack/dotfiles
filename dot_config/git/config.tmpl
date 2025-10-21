@@ -1,0 +1,66 @@
+[user]
+name = {{ .name | quote }}
+email = {{ .email | quote }}
+
+[init]
+defaultBranch = main
+
+[alias]
+undo = reset --soft HEAD^
+clear = checkout -- .
+nah = "!f(){ git reset --hard; git clean -df; if [ -d ".git/rebase-apply" ] || [ -d ".git/rebase-merge" ]; then git rebase --abort; fi; }; f"
+yo = status -sb
+up = !git -c core.hooksPath=/dev/null switch $1 && git pull
+cp = '!git clear && git pull'
+stsh = stash save --keep-index
+stash-all = stash save --include-untracked
+glog = log --graph --pretty=format:'%C(bold blue)<%an>%Creset -%C(yellow)%d%Creset %Cgreen(%cr)%n%Cred%h%Creset %s'
+missing = log HEAD..FETCH_HEAD --graph --pretty=format:'%C(bold blue)<%an>%Creset -%C(yellow)%d%Creset %Cgreen(%cr)%n%Cred%h%Creset %s'
+missing-file = log HEAD..FETCH_HEAD --name-status
+cb = forgit checkout_branch
+
+[core]
+editor = code --wait
+excludesfile = ~/.config/git/ignore
+pager = delta --diff-so-fancy
+
+[interactive]
+diffFilter = delta --color-only
+
+[include]
+path = ~/.config/delta/delta.gitconfig
+
+[difftool]
+prompt = false
+trustExitCode = true
+
+[difftool "vscode"]
+cmd = code --wait --diff $LOCAL $REMOTE
+
+[difftool "Kaleidoscope"]
+cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+
+[merge]
+conflictStyle = zdiff3
+tool = nvim
+
+[mergetool]
+prompt = false
+keepBackup = false
+
+[mergetool "nvim"]
+cmd = nvim -d \"$LOCAL\" \"$MERGED\" \"$REMOTE\"
+trustExitCode = false
+
+[mergetool "vscode"]
+cmd = code --wait $MERGED
+
+[mergetool "Kaleidoscope"]
+cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+trustExitCode = true
+
+[filter "lfs"]
+smudge = git-lfs smudge -- %f
+process = git-lfs filter-process
+required = true
+clean = git-lfs clean -- %f

@@ -1,0 +1,34 @@
+[delta "vampire-bat"]
+#author: https://github.com/brandonschlack
+dark                          = true
+side-by-side                  = true
+keep-plus-minus-markers       = true
+file-added-label              = [+]
+file-copied-label             = [==]
+file-modified-label           = [*]
+file-removed-label            = [-]
+file-renamed-label            = [->]
+file-style                    = omit
+zero-style                    = syntax
+syntax-theme                  = Dracula
+commit-decoration-style       = green box
+commit-style                  = yellow bold italic
+hunk-header-decoration-style  = blue box ul
+hunk-header-file-style        = purple ul bold
+hunk-header-line-number-style = yellow box bold
+hunk-header-style             = file line-number syntax bold italic
+line-numbers                  = true
+line-numbers-left-format      = "{nm:>4}|"
+line-numbers-left-style       = blue
+line-numbers-minus-style      = red bold
+line-numbers-plus-style       = green bold
+line-numbers-right-format     = "{np:>4}|"
+line-numbers-right-style      = blue
+line-numbers-zero-style       = dim normal
+minus-style                   = bold red
+minus-non-emph-style          = bold red
+minus-emph-style              = bold red 52
+plus-style                    = bold green
+plus-non-emph-style           = bold green
+plus-emph-style               = bold green 22
+whitespace-error-style        = purple bold

@@ -1,0 +1,6 @@
+".config/delta/themes.gitconfig":
+  type: archive-file
+  url: https://github.com/dandavison/delta/archive/refs/heads/master.zip
+  stripComponents: 1
+  path: "themes.gitconfig"
+  refreshPeriod: 672h

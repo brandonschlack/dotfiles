@@ -1,0 +1,6 @@
+{{- if eq .chezmoi.os "darwin" -}}
+# Add Visual Studio Code (code)
+export PATH=$PATH:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+{{- end -}}
+# Add local user binaries
+export PATH="$PATH:{{ .chezmoi.homeDir }}/.local/bin"

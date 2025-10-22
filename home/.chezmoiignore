@@ -1,0 +1,18 @@
+**/*.DS_Store
+
+{{ if ne .chezmoi.os "darwin" }}
+.chezmoiscripts/darwin/
+.chezmoiscripts/darwin/**
+.zshrc.Darwin.d/
+.zshrc.Darwin.d/**
+Library/
+Library/**
+{{ end }}
+{{ if ne .chezmoi.os "linux" }}
+.chezmoiscripts/linux/
+.chezmoiscripts/linux/**
+.zshrc.Linux.d/
+.zshrc.Linux.d/**
+.config/lazygit/
+.config/lazygit/**
+{{ end }}

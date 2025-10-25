@@ -46,10 +46,8 @@ load-default-plugin-list() {
     ZGEN_LOADED=()
     ZGEN_COMPLETIONS=()
 
-    if [[ $(_zrc-get-setting load-omz-plugins true) == 'true' ]]; then
-        zgenom ohmyzsh
-        zgenom ohmyzsh plugins/fzf
-    fi
+    zgenom ohmyzsh
+    zgenom ohmyzsh plugins/fzf
 
     # Load fzf-tab before plugins that wrap widgets
     zgenom load Aloxaf/fzf-tab
@@ -93,9 +91,7 @@ load-default-plugin-list() {
     zgenom load unixorn/git-extra-commands
 
     # Add diff-so-fancy so git can use it
-    if [[ "$(_zrc-get-setting diff-so-fancy true)" == 'true' ]]; then
-        zgenom load so-fancy/diff-so-fancy
-    fi
+    # zgenom load so-fancy/diff-so-fancy
 
     # Supercharge your history search with fzf
     # zgenom load unixorn/fzf-zsh-plugin
@@ -141,31 +137,24 @@ load-default-plugin-list() {
 
     # ──────────────────────────────────────────────────────────────────────────────
 
-    if [[ $(_zrc-get-setting load-omz-plugins true) == 'true' ]]; then
-        # Load some oh-my-zsh plugins
-        zgenom ohmyzsh plugins/zoxide
-        zgenom ohmyzsh plugins/pip
-        zgenom ohmyzsh plugins/sudo
-        zgenom ohmyzsh plugins/aws
-        zgenom ohmyzsh plugins/chruby
-        zgenom ohmyzsh plugins/colored-man-pages
-        zgenom ohmyzsh plugins/git
-        zgenom ohmyzsh plugins/github
-        zgenom ohmyzsh plugins/python
-        zgenom ohmyzsh plugins/rsync
-        zgenom ohmyzsh plugins/screen
-        zgenom ohmyzsh plugins/vagrant
-
-        if [[ $(uname -a | grep -ci Darwin) = 1 ]]; then
-            # Load macOS-specific plugins
-            zgenom ohmyzsh plugins/brew
-            zgenom ohmyzsh plugins/macos
-        fi
-
-    fi
+    # Load some oh-my-zsh plugins
+    zgenom ohmyzsh plugins/zoxide
+    zgenom ohmyzsh plugins/pip
+    zgenom ohmyzsh plugins/sudo
+    zgenom ohmyzsh plugins/aws
+    zgenom ohmyzsh plugins/chruby
+    zgenom ohmyzsh plugins/colored-man-pages
+    zgenom ohmyzsh plugins/git
+    zgenom ohmyzsh plugins/github
+    zgenom ohmyzsh plugins/python
+    zgenom ohmyzsh plugins/rsync
+    zgenom ohmyzsh plugins/screen
+    zgenom ohmyzsh plugins/vagrant
 
     if [[ $(uname -a | grep -ci Darwin) = 1 ]]; then
         # Load macOS-specific plugins
+        zgenom ohmyzsh plugins/brew
+        zgenom ohmyzsh plugins/macos
         zgenom load thirteen37/fzf-brew
     fi
 

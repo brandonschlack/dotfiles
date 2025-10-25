@@ -70,3 +70,11 @@
     process = git-lfs filter-process
     required = true
     clean = git-lfs clean -- %f
+
+{{- $ghPath := lookPath "gh" }}
+{{- if $ghPath }}
+[credential "https://github.com"]
+	helper = !{{ $ghPath }} auth git-credential
+[credential "https://gist.github.com"]
+	helper = !{{ $ghPath }} auth git-credential
+{{- end }}

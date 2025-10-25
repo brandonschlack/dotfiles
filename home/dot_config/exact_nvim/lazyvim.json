@@ -12,7 +12,8 @@
     "lazyvim.plugins.extras.lang.typescript",
     "lazyvim.plugins.extras.lang.vue",
     "lazyvim.plugins.extras.lang.yaml",
-    "lazyvim.plugins.extras.util.chezmoi"
+    "lazyvim.plugins.extras.util.chezmoi",
+    "lazyvim.plugins.extras.util.project"
   ],
   "install_version": 8,
   "news": {

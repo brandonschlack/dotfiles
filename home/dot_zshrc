@@ -62,14 +62,6 @@ fi
 # Unset COMPLETION_WAITING_DOTS in a file in ~/.zshrc.d if you want red dots to be displayed while waiting for completion
 export COMPLETION_WAITING_DOTS="true"
 
-# Provide a unified way for the quickstart to get/set settings.
-if [[ -f ~/.zrc-settings-path ]]; then
-    _zrc_SETTINGS_DIR=$(cat ~/.zrc-settings-path)
-else
-    _zrc_SETTINGS_DIR="${HOME}/.zrc-settings"
-fi
-export _zrc_SETTINGS_DIR
-
 # _zrc-* functions are internal tooling for the quickstart. Modifying or unsetting
 # them is likely to break things badly.
 
@@ -99,143 +91,6 @@ function load-shell-fragments() {
     fi
 }
 
-# Settings names have to be valid file names, and we're not doing any parsing here.
-_zrc-get-setting() {
-    # If there is a $2, we return that as the default value if there's
-    # no settings file.
-    local sfile="${_zrc_SETTINGS_DIR}/${1}"
-    if [[ -f "$sfile" ]]; then
-        svalue=$(cat "$sfile")
-    else
-        if [[ $# -eq 2 ]]; then
-            svalue=$2
-        else
-            svalue=''
-        fi
-    fi
-    echo "$svalue"
-}
-
-_zrc-set-setting() {
-    if [[ $# -eq 2 ]]; then
-        mkdir -p "$_zrc_SETTINGS_DIR"
-        echo "$2" > "${_zrc_SETTINGS_DIR}/$1"
-    else
-        echo "Usage: _zrc-set-setting-value SETTINGNAME VALUE"
-    fi
-}
-
-_zrc-delete-setting(){
-    # We want to keep output clean when settings are cleared internally, so
-    # use a separate function when called by a human we can display a warning
-    # if the setting doesn't exist.
-    local sfile="${_zrc_SETTINGS_DIR}/${1}"
-    if [[ -f "$sfile" ]]; then
-        rm -f "$sfile"
-    else
-        echo "There is no settings file for ${1}"
-    fi
-}
-
-_zrc-purge-setting() {
-    local sfile="${_zrc_SETTINGS_DIR}/${1}"
-    rm -f "$sfile"
-}
-
-# Add some quickstart feature toggle functions
-function zrc-select-starship() {
-    _zrc-set-setting starship true
-    _zrc-set-setting powerlevel10k false
-    _zrc-trigger-init-rebuild
-}
-
-function zrc-select-powerlevel10k() {
-    rm -f ~/.zrc-use-starship
-    _zrc-set-setting powerlevel10k true
-    _zrc-set-setting starship false
-    _zrc-trigger-init-rebuild
-}
-
-function zrc-disable-1password-ssh-agent() {
-    _zrc-set-setting use-1password-ssh-agent false
-}
-function zrc-enable-1password-ssh-agent() {
-    _zrc-set-setting use-1password-ssh-agent true
-}
-
-# Binary feature settings functions should always be named
-# zrc-disable-FEATURE and zrc-enable-FEATURE
-
-function zrc-disable-bindkey-handling() {
-    _zrc-set-setting handle-bindkeys false
-}
-
-function zrc-enable-bindkey-handling() {
-    _zrc-set-setting handle-bindkeys true
-}
-
-function zrc-disable-control-c-decorator() {
-    _zrc-set-setting control-c-decorator false
-    echo "Disabled the control-c decorator in future zsh sessions."
-    echo "You can re-enable the quickstart's control-c decorator by running 'zrc enable-control-c-decorator'"
-}
-
-function zrc-enable-control-c-decorator() {
-    echo "The control-c decorator is enabled for future zsh sessions."
-    echo "You can disable the quickstart's control-c decorator by running 'zrc disable-control-c-decorator'"
-    _zrc-set-setting control-c-decorator true
-}
-
-function _zrc-enable-zmv-autoloading() {
-    _zrc-set-setting no-zmv false
-}
-
-function _zrc-disable-zmv-autoloading() {
-    _zrc-set-setting no-zmv true
-}
-
-function zrc-disable-omz-plugins() {
-    rm -f ~/.zrc-no-omz
-    _zrc-set-setting load-omz-plugins false
-    _zrc-trigger-init-rebuild
-}
-
-function zrc-enable-omz-plugins() {
-    rm -f ~/.zrc-no-omz
-    _zrc-set-setting load-omz-plugins true
-    _zrc-trigger-init-rebuild
-}
-
-function zrc-set-ssh-askpass-require() {
-    export SSH_ASKPASS_REQUIRE=never
-}
-
-function zrc-enable-ssh-askpass-require() {
-    _zrc-set-setting enable-ssh-askpass-require true
-}
-
-function zrc-disable-ssh-askpass-require() {
-    _zrc-set-setting enable-ssh-askpass-require false
-    zrc-check-for-ssh-askpass
-}
-
-function _zrc-enable-diff-so-fancy() {
-    _zrc-set-setting diff-so-fancy true
-}
-
-function _zrc-disable-diff-so-fancy() {
-    _zrc-set-setting diff-so-fancy false
-}
-
-function zrc-check-for-ssh-askpass() {
-    if ! can_haz ssh-askpass; then
-        echo "If you disable the ssh-askpass-require feature, you'll"
-        echo "need to install ssh-askpass for the quickstart to prompt,"
-        echo "for your ssh key/s passphrase on shell startup."
-        echo "This is the default behavior for ssh-add:"
-        echo $(tput setaf 2)"https://www.man7.org/linux/man-pages/man1/ssh-add.1.html#ENVIRONMENT"$(tput sgr0)
-    fi
-}
 # Correct spelling for commands
 setopt correct
 
@@ -265,6 +120,7 @@ for path_candidate in /Applications/Xcode.app/Contents/Developer/usr/bin \
     ~/.linuxbrew/sbin \
     ~/.rbenv/bin \
     ~/bin \
+    ~/.local/bin \
     ~/src/gocode/bin \
     ~/gocode
 do
@@ -300,31 +156,7 @@ if [[ -z "$LS_COLORS" ]]; then
     export LS_COLORS='di=1;34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:'
 fi
 
-onepassword-agent-check() {
-    # 1password ssh agent support
-    zrc-debug "Checking for 1password"
-    if [[ $(_zrc-get-setting use-1password-ssh-agent true) == 'true' ]]; then
-        if [[ "$(uname -s)" == "Darwin" ]]; then
-            local ONE_P_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
-        fi
-        if [[ "$(uname -s)" == "Linux" ]]; then
-            local ONE_P_SOCK=~/.1password/agent.sock
-        fi
-        zrc-debug "ONE_P_SOCK=$ONE_P_SOCK"
-        if [[ -r "$ONE_P_SOCK" ]];then
-            export SSH_AUTH_SOCK="$ONE_P_SOCK"
-        else
-            echo "ZRC is set to use 1Password's ssh agent, but $ONE_P_SOCK isn't readable!"
-        fi
-        zrc-debug "Set SSH_AUTH_SOCK to $SSH_AUTH_SOCK"
-    fi
-}
-
 load-our-ssh-keys() {
-    # setup ssh-agent for 1password only if it's installed
-    if can_haz op; then
-        onepassword-agent-check
-    fi
     # If keychain is installed let it take care of ssh-agent, else do it manually
     if can_haz keychain; then
         eval `keychain -q --eval`
@@ -382,15 +214,7 @@ load-our-ssh-keys() {
 }
 
 if [[ -z "$SSH_CLIENT" ]] || can_haz keychain; then
-    # We're not on a remote machine, so load keys
-    if [[ "$(_zrc-get-setting enable-ssh-askpass-require)" == 'true' ]]; then
-        zrc-set-ssh-askpass-require
-    fi
-    load_ssh_keys="$(_zrc-get-setting load-ssh-keys true)"
-    if [[ "$load_ssh_keys" != "false" ]]; then
-        load-our-ssh-keys
-    fi
-    unset load_ssh_keys
+    load-our-ssh-keys
 fi
 
 # Load helper functions before we load zgenom setup
@@ -487,12 +311,6 @@ setopt INTERACTIVE_COMMENTS  # Enable comments in interactive shell.
 
 setopt extended_glob # Enable more powerful glob features
 
-# Long running processes should return time after they complete. Specified
-# in seconds.
-REPORTTIME=${REPORTTIME:-2}
-
-TIMEFMT="%U user %S system %P cpu %*Es total"
-
 # How often to check for an update. If you want to override this, the
 # easiest way is to add a script fragment in ~/.zshrc.d that unsets
 # DOTFILE_REFRESH_IN_DAYS.
@@ -502,25 +320,20 @@ DOTFILE_REFRESH_IN_DAYS=7
 # does a zgenom update. Closes #62.
 DISABLE_AUTO_UPDATE=true
 
-if [[ $(_zrc-get-setting handle-bindkeys true) == 'true' ]]; then
-    # Expand aliases inline - see http://blog.patshead.com/2012/11/automatically-expaning-zsh-global-aliases---simplified.html
-    globalias() {
-        if [[ $LBUFFER =~ ' [A-Z0-9]+$' ]]; then
-            zle _expand_alias
-            zle expand-word
-        fi
-        zle self-insert
-    }
+# Expand aliases inline - see http://blog.patshead.com/2012/11/automatically-expaning-zsh-global-aliases---simplified.html
+globalias() {
+    if [[ $LBUFFER =~ ' [A-Z0-9]+$' ]]; then
+        zle _expand_alias
+        zle expand-word
+    fi
+    zle self-insert
+}
 
-    zle -N globalias
+zle -N globalias
 
-    bindkey " " globalias
-    bindkey "^ " magic-space           # control-space to bypass completion
-    bindkey -M isearch " " magic-space # normal space during searches
-fi
-
-# Make it easier to customize the quickstart to your needs without
-# having to maintain your own fork.
+bindkey " " globalias
+bindkey "^ " magic-space           # control-space to bypass completion
+bindkey -M isearch " " magic-space # normal space during searches
 
 # Stuff that works on bash or zsh
 if [ -r ~/.sh_aliases ]; then
@@ -566,31 +379,15 @@ if [ "$TERM" = "screen" -a ! "$SHOWED_SCREEN_MESSAGE" = "true" ]; then
 fi
 
 # These need to be done after $PATH is set up so we can find
-# grc and exa
-
-# Set up colorized ls when gls is present - it's installed by grc
-# shellcheck disable=SC2154
-if (( $+commands[gls] )); then
-    alias ls="gls -F --color"
-    alias l="gls -lAh --color"
-    alias ll="gls -l --color"
-    alias la='gls -A --color'
-fi
+# eza
 
 # When present, use exa or eza (newest) instead of ls
 if can_haz eza; then
     ls_analog='eza'
-elif can_haz exa; then
-    ls_analog='exa'
 fi
 
 if [ -v ls_analog ]; then
-    if [[ "$($ls_analog --help | grep -c git)" == 0 ]]; then
-        # Not every linux exa build has git support compiled in
-        alias l="$ls_analog -al --icons --time-style=long-iso --group-directories-first --color-scale"
-    else
-        alias l="$ls_analog -al --icons --git --time-style=long-iso --group-directories-first --color-scale"
-    fi
+    alias l="$ls_analog -al --icons --git --time-style=long-iso --group-directories-first --color-scale"
     alias ls="$ls_analog --group-directories-first"
 
     # Don't step on system-installed tree command
@@ -615,9 +412,7 @@ if [[ -d ~/.zsh-completions.d ]]; then
 fi
 
 # Load zmv
-if [[ $(_zrc-get-setting no-zmv false) == 'false' ]]; then
-    autoload -U zmv
-fi
+autoload -U zmv
 
 # Make it easy to append your own customizations that override the
 # quickstart's defaults by loading all files from the ~/.zshrc.d directory
@@ -707,23 +502,14 @@ else
     source ~/.p10k.zsh
 fi
 
-if [[ $(_zrc-get-setting list-ssh-keys true) == 'true' ]]; then
-    echo
-    echo "Current SSH Keys:"
-    ssh-add -l
-    echo
-fi
-
-if [[ $(_zrc-get-setting control-c-decorator 'true') == 'true' ]]; then
-    # Original source: https://vinipsmaker.wordpress.com/2014/02/23/my-zsh-config/
-    # bash prints ^C when you're typing a command and control-c to cancel, so it
-    # is easy to see it wasn't executed. By default, ZSH doesn't print the ^C.
-    # We trap SIGINT to make it print the ^C.
-    TRAPINT() {
-        print -n -u2 '^C'
-        return $((128+$1))
-    }
-fi
+# Original source: https://vinipsmaker.wordpress.com/2014/02/23/my-zsh-config/
+# bash prints ^C when you're typing a command and control-c to cancel, so it
+# is easy to see it wasn't executed. By default, ZSH doesn't print the ^C.
+# We trap SIGINT to make it print the ^C.
+TRAPINT() {
+    print -n -u2 '^C'
+    return $((128+$1))
+}
 
 if ! can_haz fzf; then
     echo "$?"
@@ -745,36 +531,11 @@ function zrc-help() {
     echo ""
     echo "Zshrc settings commands:"
 
-    echo "zrc disable-1password-agent - New sessions will not use 1Password's ssh agent"
-    echo "zrc enable-1password-agent - New sessions will use 1Password's ssh agent if present."
-
-    echo "zrc disable-bindkey-handling - Set the zsh profile to not touch any bindkey settings. Useful if you're using another plugin to handle it."
-    echo "zrc enable-bindkey-handling - Set the zsh profile to configure your bindkey settings. This is the default behavior."
-
-    echo "zrc enable-control-c-decorator - Creates a TRAPINT function to display '^C' when you type control-c instead of being silent. Default behavior."
-    echo "zrc disable-control-c-decorator - No longer creates a TRAPINT function to display '^C' when you type control-c."
-
-    echo "zrc enable-diff-so-fancy - Load the diff-so-fancy ZSH plugin (defaults to true)"
-    echo "zrc disable-diff-so-fancy - Don't load the diff-so-fancy ZSH plugin"
-
-    echo "zrc disable-omz-plugins - Set the zsh profile to not load oh-my-zsh plugins if you're using the standard plugin list"
-    echo "zrc enable-omz-plugins - Set the zsh profile to load oh-my-zsh plugins if you're using the standard plugin list"
-
-    echo "zrc enable-ssh-askpass-require - Set the zsh profile to prompt for your ssh passphrase on the command line."
-    echo "zrc disable-ssh-askpass-require - Set the zsh profile to prompt for your ssh passphrase via a gui program. This is the default behavior"
-
-    echo "zrc disable-ssh-key-listing - Set the zsh profile to not display all the loaded ssh keys"
-    echo "zrc enable-ssh-key-listing - Set the zsh profile to display all the loaded ssh keys. This is the default behavior."
-
-    echo "zrc disable-ssh-key-loading - Set the zsh profile to not load your ssh keys. Useful if you're storing them in a yubikey."
-    echo "zrc enable-ssh-key-loading - Set the zsh profile to load your ssh keys if they aren't already in an ssh agent. This is the default behavior."
+    echo "zrc disable-debug-mode - Turn off debug mode. This will stop printing debug messages during zsh startup."
+    echo "zrc enable-debug-mode - Turn on debug mode. This will print debug messages during zsh startup."
 
     echo "zrc disable-zmv-autoloading - Set the zsh profile to not run 'autoload -U zmv'. Useful if you're using another plugin to handle it."
     echo "zrc enable-zmv-autoloading - Set the zsh profile to run 'autoload -U zmv'. This is the default behavior."
-
-    echo "zrc delete-setting SETTINGNAME - Remove a zrc setting file"
-    echo "zrc get-setting SETTINGNAME [optional default value] - load a zrc setting"
-    echo "zrc set-setting SETTINGNAME value - Set an arbitrary zrc setting"
 }
 
 function zrc() {
@@ -788,23 +549,8 @@ function zrc() {
             zgenom clean
             ;;
 
-        'delete-setting')
-            shift
-            _zrc-delete-setting $@
-            ;;
-
-        'get-setting')
-            shift
-            _zrc-get-setting $@
-            ;;
-
         'selfupdate')
             _update-zrc
-            ;;
-
-        'set-setting')
-            shift
-            _zrc-set-setting $@
             ;;
 
         'update')
@@ -818,77 +564,11 @@ function zrc() {
 
         # Set/Unset settings
 
-        'disable-1password-agent')
-            echo "Disabling 1password ssh-agent. New ZSH sessions will no longer use 1password's ssh agent."
-            _zrc-set-setting use-1password-ssh-agent false
-            ;;
-        'enable-1password-agent')
-            echo "Enabling 1password ssh-agent. New ZSH sessions will use 1password's ssh agent."
-            _zrc-set-setting use-1password-ssh-agent true
-            ;;
-
-        'disable-bindkey-handling')
-            zrc-disable-bindkey-handling
-            ;;
-        'enable-bindkey-handling')
-            zrc-enable-bindkey-handling
-            ;;
-
-        'disable-control-c-decorator')
-            zrc-disable-control-c-decorator
-            ;;
-        'enable-control-c-decorator')
-            zrc-enable-control-c-decorator
-            ;;
         'disable-debug-mode')
             rm -f ~/.zrc-debug-mode
             ;;
         'enable-debug-mode')
             date > ~/.zrc-debug-mode
-            ;;
-
-        'disable-diff-so-fancy')
-            echo "Disabling diff-so-fancy plugin. New ZSH sessions will no longer use the plugin."
-            _zrc-set-setting diff-so-fancy false
-            ;;
-        'enable-diff-so-fancy')
-            echo "Enabling diff-so-fancy plugin. It will be loaded the next time you start a ZSH session."
-            _zrc-set-setting diff-so-fancy true
-            ;;
-
-        'disable-zmv-autoloading')
-            _zrc-disable-zmv-autoloading
-            ;;
-        'enable-zmv-autoloading')
-            _zrc-enable-zmv-autoloading
-            ;;
-
-        'disable-omz-plugins')
-            zrc-disable-omz-plugins
-            ;;
-        'enable-omz-plugins')
-            zrc-enable-omz-plugins
-            ;;
-
-        'enable-ssh-askpass-require')
-            zrc-enable-ssh-askpass-require
-            ;;
-        'disable-ssh-askpass-require')
-            zrc-disable-ssh-askpass-require
-            ;;
-
-        'enable-ssh-key-listing')
-            _zrc-set-setting list-ssh-keys true
-            ;;
-        'disable-ssh-key-listing')
-            _zrc-set-setting list-ssh-keys false
-            ;;
-
-        'disable-ssh-key-loading')
-            _zrc-set-setting load-ssh-keys false
-            ;;
-        'enable-ssh-key-loading')
-            _zrc-set-setting load-ssh-keys true
             ;;
 
         # Profiling checks happen before the settings code is loaded, so we

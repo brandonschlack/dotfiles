@@ -164,6 +164,11 @@ load-default-plugin-list() {
 
     fi
 
+    if [[ $(uname -a | grep -ci Darwin) = 1 ]]; then
+        # Load macOS-specific plugins
+        zgenom load thirteen37/fzf-brew
+    fi
+
     # A utility tool powered by fzf for using git interactively.
     zgenom load wfxr/forgit
 

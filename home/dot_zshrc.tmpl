@@ -37,6 +37,8 @@ function zrc-debug() {
     fi
 }
 
+# ─── P10k Instant Prompt ──────────────────────────────────────────────────────
+
 # Fix weirdness with intellij
 if [[ -z "${INTELLIJ_ENVIRONMENT_READER}" ]]; then
     export POWERLEVEL9K_INSTANT_PROMPT='quiet'
@@ -58,6 +60,8 @@ fi
 if [[ -r ~/.powerlevel9k_font_mode ]]; then
     POWERLEVEL9K_MODE=$(head -1 ~/.powerlevel9k_font_mode)
 fi
+
+# ──────────────────────────────────────────────────────────────────────────────
 
 # Unset COMPLETION_WAITING_DOTS in a file in ~/.zshrc.d if you want red dots to be displayed while waiting for completion
 export COMPLETION_WAITING_DOTS="true"
@@ -97,6 +101,8 @@ setopt correct
 # turn off the infernal correctall for filenames
 unsetopt correctall
 
+# ─── Path ─────────────────────────────────────────────────────────────────────
+
 # Base PATH
 PATH="$PATH:/sbin:/usr/sbin:/bin:/usr/bin"
 
@@ -105,24 +111,30 @@ PATH="$PATH:/sbin:/usr/sbin:/bin:/usr/bin"
 # fork of the kit.
 
 # Conditional PATH additions
-for path_candidate in /Applications/Xcode.app/Contents/Developer/usr/bin \
+for path_candidate in \
+{{- if eq .chezmoi.os "darwin" }}
+    /Applications/Xcode.app/Contents/Developer/usr/bin \
+{{- end }}
+{{- if (and (eq .chezmoi.os "darwin") (eq .chezmoi.arch "arm64")) }}
     /opt/homebrew/bin \
     /opt/homebrew/sbin \
-    /home/linuxbrew/.linuxbrew/bin \
-    /home/linuxbrew/.linuxbrew/sbin \
-    /opt/local/bin \
-    /opt/local/sbin \
+{{- else }}
     /usr/local/bin \
     /usr/local/sbin \
-    ~/.cabal/bin \
-    ~/.cargo/bin \
+{{- end }}
+{{- if eq .chezmoi.os "linux" }}
+    /home/linuxbrew/.linuxbrew/bin \
+    /home/linuxbrew/.linuxbrew/sbin \
     ~/.linuxbrew/bin \
     ~/.linuxbrew/sbin \
+{{- end }}
+    ~/.cabal/bin \
+    ~/.cargo/bin \
     ~/.rbenv/bin \
-    ~/bin \
-    ~/.local/bin \
     ~/src/gocode/bin \
-    ~/gocode
+    ~/gocode \
+    ~/bin \
+    ~/.local/bin
 do
     if [[ -d "${path_candidate}" ]]; then
         path+=("${path_candidate}")
@@ -133,17 +145,8 @@ export PATH
 # We will dedupe $PATH after loading ~/.zshrc.d/* so that any duplicates
 # added there get deduped too.
 
-# Deal with brew if it's installed. Note - brew can be installed outside
-# of /usr/local, so use brew --prefix to find its bin and sbin directories.
-if can_haz brew; then
-    BREW_PREFIX=$(brew --prefix)
-    if [[ -d "${BREW_PREFIX}/bin" ]]; then
-        export PATH="$PATH:${BREW_PREFIX}/bin"
-    fi
-    if [[ -d "${BREW_PREFIX}/sbin" ]]; then
-        export PATH="$PATH:${BREW_PREFIX}/sbin"
-    fi
-fi
+# ──────────────────────────────────────────────────────────────────────────────
+# ─── Colors ───────────────────────────────────────────────────────────────────
 
 # Yes, these are a pain to customize. Fortunately, Geoff Greer made an online
 # tool that makes it easy to customize your color scheme and keep them in sync
@@ -155,6 +158,9 @@ fi
 if [[ -z "$LS_COLORS" ]]; then
     export LS_COLORS='di=1;34:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=0;41:sg=0;46:tw=0;42:ow=0;43:'
 fi
+
+# ──────────────────────────────────────────────────────────────────────────────
+# ─── SSH Key Loading ──────────────────────────────────────────────────────────
 
 load-our-ssh-keys() {
     # If keychain is installed let it take care of ssh-agent, else do it manually
@@ -217,6 +223,9 @@ if [[ -z "$SSH_CLIENT" ]] || can_haz keychain; then
     load-our-ssh-keys
 fi
 
+# ──────────────────────────────────────────────────────────────────────────────
+# ─── Zgenom Setup ─────────────────────────────────────────────────────────────
+
 # Load helper functions before we load zgenom setup
 if [ -r ~/.zsh_functions ]; then
     source ~/.zsh_functions
@@ -227,10 +236,6 @@ fi
 # ~/.zshrc.pre-plugins.d directory
 mkdir -p ~/.zshrc.pre-plugins.d
 load-shell-fragments ~/.zshrc.pre-plugins.d
-
-if [[ -d "$HOME/.zshrc.pre-plugins.$(uname).d" ]]; then
-    load-shell-fragments "$HOME/.zshrc.pre-plugins.$(uname).d"
-fi
 
 # macOS doesn't have a python by default. This makes the omz python and
 # zsh-completion-generator plugins sad, so if there isn't a python, alias
@@ -259,6 +264,9 @@ if [[ -n "$ZSH_COMPLETION_HACK" ]]; then
     unset GENCOMPL_PY
     unset ZSH_COMPLETION_HACK
 fi
+
+# ──────────────────────────────────────────────────────────────────────────────
+# ─── General ZSH Settings ─────────────────────────────────────────────────────
 
 # Set some history options
 #
@@ -381,7 +389,7 @@ fi
 # These need to be done after $PATH is set up so we can find
 # eza
 
-# When present, use exa or eza (newest) instead of ls
+# When present, use eza instead of ls
 if can_haz eza; then
     ls_analog='eza'
 fi
@@ -418,15 +426,6 @@ autoload -U zmv
 # quickstart's defaults by loading all files from the ~/.zshrc.d directory
 mkdir -p ~/.zshrc.d
 load-shell-fragments ~/.zshrc.d
-
-if [[ -d "$HOME/.zshrc.$(uname).d" ]]; then
-    load-shell-fragments "$HOME/.zshrc.$(uname).d"
-fi
-
-# Load work-specific fragments when present
-if [[ -d "$HOME/.zshrc.work.d" ]]; then
-    load-shell-fragments "$HOME/.zshrc.work.d"
-fi
 
 # If GOPATH is defined, add it to $PATH
 if [[ -n "$GOPATH" ]]; then

@@ -1,0 +1,165 @@
+# A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
+# If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
+"$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
+
+# Smart Enter
+[[mgr.prepend_keymap]]
+on = "l"
+run = "plugin smart-enter"
+desc = "Enter the child directory, or open the file"
+
+# Open with Command
+[[mgr.prepend_keymap]]
+on = "o"
+run = "plugin open-with-cmd --args=block"
+desc = "Open with command in the terminal"
+
+[[mgr.prepend_keymap]]
+on = "O"
+run = "plugin open-with-cmd"
+desc = "Open with command"
+
+# Pref By Location
+# Toggle Hidden
+[[mgr.prepend_keymap]]
+on = "."
+run = [ "hidden toggle", "plugin pref-by-location -- save" ]
+desc = "Toggle the visibility of hidden files"
+# Linemode
+# Size
+[[mgr.prepend_keymap]]
+on = [ "m", "s" ]
+run = [ "linemode size", "plugin pref-by-location -- save" ]
+desc = "Linemode: size"
+# Permissions
+[[mgr.prepend_keymap]]
+on = [ "m", "p" ]
+run = [ "linemode permissions", "plugin pref-by-location -- save" ]
+desc = "Linemode: permissions"
+# Btime
+[[mgr.prepend_keymap]]
+on = [ "m", "b" ]
+run = [ "linemode btime", "plugin pref-by-location -- save" ]
+desc = "Linemode: btime"
+# Modified Time
+[[mgr.prepend_keymap]]
+on = [ "m", "m" ]
+run = [ "linemode mtime", "plugin pref-by-location -- save" ]
+desc = "Linemode: mtime"
+# Owner
+[[mgr.prepend_keymap]]
+on = [ "m", "o" ]
+run = [ "linemode owner", "plugin pref-by-location -- save" ]
+desc = "Linemode: owner"
+# None
+[[mgr.prepend_keymap]]
+on = [ "m", "n" ]
+run = [ "linemode name", "plugin pref-by-location -- save" ]
+desc = "Linemode: none"
+
+# Auto-save
+# Any changes during disabled state won't be saved to save file.
+# Toggle
+[[mgr.prepend_keymap]]
+on = [ ",", "t" ]
+run = "plugin pref-by-location -- toggle"
+desc = "Toggle auto-save of preferences by location"
+# Disable
+[[mgr.prepend_keymap]]
+on = [ ",", "d" ]
+run = "plugin pref-by-location -- disable"
+desc = "Disable auto-save of preferences by location"
+# Enable
+[[mgr.prepend_keymap]]
+on = [ ",", "e" ]
+run = "plugin pref-by-location -- enable"
+desc = "Enable auto-save of preferences by location"
+# Reset
+# This will reset any preference changes for the current working directory (CWD),
+# then fall back to the predefined preferences in init.lua or yazi.toml.
+[[mgr.prepend_keymap]]
+on = [ ",", "R" ]
+run = "plugin pref-by-location -- reset"
+desc = "Reset preferences for current location"
+# Sorting
+# Sort by Modified Time
+[[mgr.prepend_keymap]]
+on = [ ",", "m" ]
+run = [ "sort mtime --reverse=no", "linemode mtime", "plugin pref-by-location -- save" ]
+desc = "Sort by modified time"
+# Sort by Modified Time (Reverse)
+[[mgr.prepend_keymap]]
+on = [ ",", "M" ]
+run = [ "sort mtime --reverse", "linemode mtime", "plugin pref-by-location -- save" ]
+desc = "Sort by modified time (reverse)"
+# Sort by Birth Time
+[[mgr.prepend_keymap]]
+on = [ ",", "b" ]
+run = [ "sort btime --reverse=no", "linemode btime", "plugin pref-by-location -- save" ]
+desc = "Sort by birth time"
+# Sort by Birth Time (Reverse)
+[[mgr.prepend_keymap]]
+on = [ ",", "B" ]
+run = [ "sort btime --reverse", "linemode btime", "plugin pref-by-location -- save" ]
+desc = "Sort by birth time (reverse)"
+# Sort by Extension
+[[mgr.prepend_keymap]]
+on = [ ",", "x" ]
+run = [ "sort extension --reverse=no", "plugin pref-by-location -- save" ]
+desc = "Sort by extension"
+# Sort by Extension (Reverse)
+[[mgr.prepend_keymap]]
+on = [ ",", "X" ]
+run = [ "sort extension --reverse", "plugin pref-by-location -- save" ]
+desc = "Sort by extension (reverse)"
+# Sort Alphabetically
+[[mgr.prepend_keymap]]
+on = [ ",", "a" ]
+run = [ "sort alphabetical --reverse=no", "plugin pref-by-location -- save" ]
+desc = "Sort alphabetically"
+# Sort Alphabetically (Reverse)
+[[mgr.prepend_keymap]]
+on = [ ",", "A" ]
+run = [ "sort alphabetical --reverse", "plugin pref-by-location -- save" ]
+desc = "Sort alphabetically (reverse)"
+# Sort Naturally
+[[mgr.prepend_keymap]]
+on = [ ",", "n" ]
+run = [ "sort natural --reverse=no", "plugin pref-by-location -- save" ]
+desc = "Sort naturally"
+# Sort Naturally (Reverse)
+[[mgr.prepend_keymap]]
+on = [ ",", "N" ]
+run = [ "sort natural --reverse", "plugin pref-by-location -- save" ]
+desc = "Sort naturally (reverse)"
+# Sort by Size
+[[mgr.prepend_keymap]]
+on = [ ",", "s" ]
+run = [ "sort size --reverse=no", "linemode size", "plugin pref-by-location -- save" ]
+desc = "Sort by size"
+# Sort by Size (Reverse)
+[[mgr.prepend_keymap]]
+on = [ ",", "S" ]
+run = [ "sort size --reverse", "linemode size", "plugin pref-by-location -- save" ]
+desc = "Sort by size (reverse)"
+# Sort Randomly
+[[mgr.prepend_keymap]]
+on = [ ",", "r" ]
+run = [ "sort random --reverse=no", "plugin pref-by-location -- save" ]
+desc = "Sort randomly"
+
+# Open LazyGit
+[[mgr.prepend_keymap]]
+on = [ "g", "i" ]
+run = "plugin lazygit"
+desc = "Open lazygit"
+
+{{ if eq .chezmoi.os "darwin" -}}
+# Open with Quicklook
+[[mgr.prepend_keymap]]
+on = "<C-p>"
+run = '''
+    shell 'qlmanage -p "$@"' --confirm
+'''
+desc = "Quick look"
+{{- end }}

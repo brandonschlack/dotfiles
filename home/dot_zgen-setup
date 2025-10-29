@@ -129,9 +129,6 @@ load-default-plugin-list() {
 
     # ─── Nvm ──────────────────────────────────────────────────────────────────────
 
-    # Zsh plugin for installing, updating and loading nvm
-    zgenom load lukechilds/zsh-nvm
-
     # Better completion for npm
     zgenom load lukechilds/zsh-better-npm-completion
 

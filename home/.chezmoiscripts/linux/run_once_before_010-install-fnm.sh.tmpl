@@ -1,0 +1,10 @@
+{{- if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env sh
+
+if [[ ! -d "${XDG_DATA_HOME:-$HOME/.local/share}/fnm" ]]; then
+    echo "fnm not found, installing..."
+    curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
+else
+    exit 0;
+fi
+{{- end -}}

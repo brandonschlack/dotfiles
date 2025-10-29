@@ -34,5 +34,9 @@ packages:
       - tailspin
       - yazi
       - zoxide
-  versions:
-    nvm: "0.40.3"
+  npm:
+    - degit
+    - eslint
+    - glob
+    - prettier
+    - ulid

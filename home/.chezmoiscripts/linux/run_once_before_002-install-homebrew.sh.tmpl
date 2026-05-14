@@ -1,0 +1,15 @@
+{{- if eq .chezmoi.os "linux" -}}
+#!/usr/bin/env sh
+
+set -e
+
+{{- if (eq .chezmoi.osRelease.id "debian" "ubuntu") }}
+echo "-------------------------------------"
+echo "Installing homebrew"
+
+curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
+
+echo "Finished installing homebrew"
+echo "-------------------------------------"
+{{- end }}
+{{- end -}}

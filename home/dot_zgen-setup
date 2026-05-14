@@ -135,6 +135,7 @@ load-default-plugin-list() {
     # ──────────────────────────────────────────────────────────────────────────────
 
     # Load some oh-my-zsh plugins
+    zgenom ohmyzsh plugins/brew
     zgenom ohmyzsh plugins/zoxide
     zgenom ohmyzsh plugins/pip
     zgenom ohmyzsh plugins/sudo
@@ -150,17 +151,13 @@ load-default-plugin-list() {
 
     if [[ $(uname -a | grep -ci Darwin) = 1 ]]; then
         # Load macOS-specific plugins
-        zgenom ohmyzsh plugins/brew
         zgenom ohmyzsh plugins/macos
-        zgenom load thirteen37/fzf-brew
     fi
+
+    zgenom load thirteen37/fzf-brew
 
     # A utility tool powered by fzf for using git interactively.
     zgenom load wfxr/forgit
-
-    # A set of shell functions to make it easy to install small apps and
-    # utilities distributed with pip.
-    # zgenom load sharat87/pip-app
 
     zgenom load chrissicool/zsh-256color
 

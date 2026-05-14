@@ -5,22 +5,23 @@ packages:
     mas: []
   linux:
     apt:
-      - cloudflared
+      - 1password-cli
+      - gh
       - docker-ce
       - docker-ce-cli
       - containerd.io
       - docker-buildx-plugin
       - docker-compose-plugin
-      - gh
-      - 1password-cli
-      - duf
-      - btop
-    nixpkgs:
+      - cloudflared
+    brews:
       - atuin
       - bat
+      - bat-extras
+      - btop
       - cheat
       - delta
       - direnv
+      - duf
       - eza
       - fd
       - fzf

@@ -3,8 +3,18 @@
 
 set -e
 
-{{- if (eq .chezmoi.osRelease.id "debian" "ubuntu" "pop") }}
-echo "Setting up sources for Debian/Ubuntu"
+# Get OS release information
+test -e /etc/os-release && os_release='/etc/os-release' || os_release='/usr/lib/os-release'
+    . "${os_release}"
+
+# Validate sudo credentials
+sudo -v
+
+{{- if (eq .chezmoi.osRelease.id "debian" "ubuntu") }}
+# Save the architecture
+ARCH=$(dpkg --print-architecture)
+
+echo "Setting up sources for ${NAME}"
 echo "-------------------------------------"
 if [ ! -f /etc/apt/sources.list.d/1password.list ]; then
     echo "Setting up 1password CLI source"
@@ -12,7 +22,7 @@ if [ ! -f /etc/apt/sources.list.d/1password.list ]; then
     sudo apt update && sudo apt install -y curl gpg
 
     curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) $(. /etc/os-release && echo "$VERSION_CODENAME") main" | \
+    echo "deb [arch=${ARCH} signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/${ARCH} stable main" | \
     sudo tee /etc/apt/sources.list.d/1password.list
 
     sudo mkdir -p /etc/debsig/policies/AC2D62742012EA22/
@@ -20,7 +30,7 @@ if [ ! -f /etc/apt/sources.list.d/1password.list ]; then
     sudo mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22
     curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
 
-    sudo apt update
+    sudo apt update && sudo apt install -y 1password-cli
 
     echo "Installed 1password CLI source"
     echo "-------------------------------------"
@@ -36,31 +46,11 @@ if [ ! -f /etc/apt/sources.list.d/github-cli.list ]; then
     sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg
 
     sudo mkdir -p -m 755 /etc/apt/sources.list.d
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages $(. /etc/os-release && echo "$VERSION_CODENAME") main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+    echo "deb [arch=${ARCH} signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
 
-    sudo apt update
+    sudo apt update && sudo apt install -y gh
 
     echo "Installed GitHub CLI source"
-    echo "-------------------------------------"
-fi
-if [ ! -f /etc/apt/sources.list.d/azlux.list ]; then
-    echo "Setting up Azlux source"
-
-    sudo apt update && sudo apt install -y wget
-
-    cat > /etc/apt/sources.list.d/azlux.sources << EOF
-Types: deb
-URIs: http://packages.azlux.fr/debian/
-Suites: bookworm
-Components: main
-Signed-By: /usr/share/keyrings/azlux-archive-keyring.gpg
-EOF
-
-    sudo wget -O /usr/share/keyrings/azlux-archive-keyring.gpg  https://azlux.fr/repo.gpg
-
-    sudo apt update
-
-    echo "Installed Azlux source"
     echo "-------------------------------------"
 fi
 if [ ! -f /etc/apt/sources.list.d/docker.list ]; then
@@ -68,12 +58,12 @@ if [ ! -f /etc/apt/sources.list.d/docker.list ]; then
 
     sudo apt update && sudo apt install -y ca-certificates curl
     sudo install -m 0755 -d /etc/apt/keyrings
-    sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+    sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
     sudo chmod a+r /etc/apt/keyrings/docker.asc
 
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian $(. /etc/os-release && echo "$VERSION_CODENAME") stable" |sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    echo "deb [arch=${ARCH} signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/${ID} ${UBUNTU_CODENAME:-$VERSION_CODENAME} stable" |sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-    sudo apt update
+    sudo apt update && sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
     echo "Installed Docker source"
     echo "-------------------------------------"
@@ -86,15 +76,15 @@ if [ ! -f /etc/apt/sources.list.d/cloudflared.list ]; then
     sudo mkdir -p --mode=0755 /usr/share/keyrings
     curl -fsSL https://pkg.cloudflare.com/cloudflare-main.gpg | sudo tee /usr/share/keyrings/cloudflare-main.gpg >/dev/null
 
-    echo "deb [signed-by=/usr/share/keyrings/cloudflare-main.gpg] https://pkg.cloudflare.com/cloudflared $(. /etc/os-release && echo "$VERSION_CODENAME") main" | sudo tee /etc/apt/sources.list.d/cloudflared.list
+    echo "deb [signed-by=/usr/share/keyrings/cloudflare-main.gpg] https://pkg.cloudflare.com/cloudflared any main" | sudo tee /etc/apt/sources.list.d/cloudflared.list
 
-    sudo apt update
+    sudo apt update && sudo apt install -y cloudflared
 
     echo "Installed Cloudflared source"
     echo "-------------------------------------"
 fi
 
-echo "Finished setting up sources for Debian/Ubuntu"
+echo "Finished setting up sources for ${NAME}"
 echo "-------------------------------------"
 {{- end }}
 {{- end -}}

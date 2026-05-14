@@ -1,4 +1,7 @@
 {{- if eq .chezmoi.os "darwin" -}}
+# Add brew to PATH
+command -v brew || export PATH="/opt/homebrew/bin:/usr/local/bin"
+command -v brew && eval "$(brew shellenv zsh)"
 # Add Visual Studio Code (code)
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 # Added by Obsidian

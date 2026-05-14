@@ -4,7 +4,7 @@
   refreshPeriod: 168h
 ".iterm2":
   type: archive
-  url: https://github.com/gnachman/iTerm2-shell-integration/archive/master.tar.gz
+  url: https://github.com/gnachman/iTerm2-shell-integration/archive/main.tar.gz
   refreshPeriod: 168h
   exact: true
   stripComponents: 2

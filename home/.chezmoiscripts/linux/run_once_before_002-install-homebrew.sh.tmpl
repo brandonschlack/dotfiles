@@ -5,11 +5,16 @@ set -e
 
 {{- if (eq .chezmoi.osRelease.id "debian" "ubuntu") }}
 echo "-------------------------------------"
-echo "Installing homebrew"
+if ! command -v brew >/dev/null 2>&1; then
+    echo "Installing homebrew"
 
-curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
+    curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
 
-echo "Finished installing homebrew"
-echo "-------------------------------------"
+    echo "Finished installing homebrew"
+    echo "-------------------------------------"
+else
+    echo "Homebrew already installed"
+    echo "-------------------------------------"
+fi
 {{- end }}
 {{- end -}}

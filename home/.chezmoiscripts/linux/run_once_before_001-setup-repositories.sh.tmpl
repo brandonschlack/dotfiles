@@ -34,6 +34,9 @@ if [ ! -f /etc/apt/sources.list.d/1password.list ]; then
 
     echo "Installed 1password CLI source"
     echo "-------------------------------------"
+else
+    echo "1password CLI source already set up"
+    echo "-------------------------------------"
 fi
 if [ ! -f /etc/apt/sources.list.d/github-cli.list ]; then
     echo "Setting up GitHub CLI source"
@@ -52,6 +55,9 @@ if [ ! -f /etc/apt/sources.list.d/github-cli.list ]; then
 
     echo "Installed GitHub CLI source"
     echo "-------------------------------------"
+else
+    echo "GitHub CLI source already set up"
+    echo "-------------------------------------"
 fi
 if [ ! -f /etc/apt/sources.list.d/docker.list ]; then
     echo "Setting up Docker source"
@@ -67,6 +73,9 @@ if [ ! -f /etc/apt/sources.list.d/docker.list ]; then
 
     echo "Installed Docker source"
     echo "-------------------------------------"
+else
+    echo "Docker source already set up"
+    echo "-------------------------------------"
 fi
 if [ ! -f /etc/apt/sources.list.d/cloudflared.list ]; then
     echo "Setting up Cloudflared source"
@@ -81,6 +90,9 @@ if [ ! -f /etc/apt/sources.list.d/cloudflared.list ]; then
     sudo apt update && sudo apt install -y cloudflared
 
     echo "Installed Cloudflared source"
+    echo "-------------------------------------"
+else
+    echo "Cloudflared source already set up"
     echo "-------------------------------------"
 fi
 

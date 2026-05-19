@@ -17,24 +17,26 @@
 {{-   $swDistro = (output "powershell.exe" "-NoProfile" "-NonInteractive" "-Command" "(Get-CimInstance -Class Win32_OperatingSystem).Caption") | trim -}}
 {{- end -}}
 
-{{- $hwModel := "unknown" -}}
-{{- if eq .chezmoi.os "darwin" -}}
-{{-   $hwModel = (output "sysctl" "-n" "hw.model") | trim -}}
-{{- else if eq .chezmoi.os "linux" -}}
-{{-   $hwModel = (output "cat" "/sys/firmware/devicetree/base/model") | trim -}}
-{{- else if eq .chezmoi.os "windows" -}}
-{{-   $hwModel = (output "powershell.exe" "-NoProfile" "-NonInteractive" "-Command" "(Get-CimInstance -Class Win32_ComputerSystem).Model") | trim -}}
-{{- end -}}
+{{- $chassisType := "desktop" }}
+{{- if eq .chezmoi.os "darwin" }}
+{{-   if contains "MacBook" (output "system_profiler" "SPHardwareDataType") }}
+{{-     $chassisType = "laptop" }}
+{{-   else }}
+{{-     $chassisType = "desktop" }}
+{{-   end }}
+{{- else if eq .chezmoi.os "linux" }}
+{{-   $chassisType = (output "hostnamectl" "--json=short" | mustFromJson).Chassis }}
+{{- else if eq .chezmoi.os "windows" }}
+{{-   $chassisType = (output "pwsh.exe" "-NoProfile" "-NonInteractive" "-Command" "if ((Get-CimInstance -Class Win32_Battery | Measure-Object).Count -gt 0) { Write-Output 'laptop' } else { Write-Output 'desktop' }") | trim }}
+{{- end }}
 
 {{- if not $ephemeral -}}
 {{-   if eq .chezmoi.os "darwin" -}}
 {{-     $personal = true -}}
-{{-   else if contains $hwModel "Raspberry Pi" -}}
-{{-     $personal = true -}}
-{{-     $headless = true -}}
 {{-   else if stdinIsATTY -}}
-{{-     $headless = promptBoolOnce . "headless" "headless" -}}
 {{-     $ephemeral = promptBoolOnce . "ephemeral" "ephemeral" -}}
+{{-     $headless = promptBoolOnce . "headless" "headless" -}}
+{{-     $personal = promptBoolOnce . "personal" "personal" -}}
 {{-   else -}}
 {{-     $ephemeral = true -}}
 {{-     $headless = true -}}
@@ -57,7 +59,7 @@ data:
     os: {{ .chezmoi.os | quote }}
     distro: {{ $swDistro | quote }}
   hw:
-    model: {{ $hwModel | quote }}
+    chassis: {{ $chassisType | quote }}
     arch: {{ .chezmoi.arch | replace "amd64" "x86_64"| replace "aarch64" "arm64" | quote }}
   name: {{ $fullName | quote }}
   email: {{ $email | quote }}

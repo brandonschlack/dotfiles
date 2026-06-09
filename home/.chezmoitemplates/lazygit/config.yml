@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/refs/tags/v0.55.1/schema/config.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/refs/tags/v0.61.1/schema/config.json
 
 gui:
   nerdFontsVersion: "2"
@@ -31,6 +31,6 @@ gui:
     defaultFgColor:
       - "#F8F8F2"
 git:
-  paging:
-    colorArg: always
-    pager: delta --diff-so-fancy --dark --paging=never
+  pagers:
+    - colorArg: always
+      pager: delta --diff-so-fancy --dark --paging=never

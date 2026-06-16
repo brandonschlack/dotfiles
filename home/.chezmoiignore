@@ -1,6 +1,7 @@
 **/*.DS_Store
 .config/yazi/flavors/**
 .config/yazi/plugins/**
+.config/yazi/bookmark
 
 {{ if ne .chezmoi.os "darwin" }}
 .chezmoiscripts/darwin/

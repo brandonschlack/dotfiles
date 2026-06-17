@@ -186,9 +186,6 @@ load-default-plugin-list() {
     # directories.
     zgenom load supercrabtree/k
 
-    # Powerlevel10k theme
-    zgenom load romkatv/powerlevel10k powerlevel10k
-
     # Save it all to init script
     zgenom save
 

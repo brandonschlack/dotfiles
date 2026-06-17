@@ -37,32 +37,6 @@ function zrc-debug() {
     fi
 }
 
-# ─── P10k Instant Prompt ──────────────────────────────────────────────────────
-
-# Fix weirdness with intellij
-if [[ -z "${INTELLIJ_ENVIRONMENT_READER}" ]]; then
-    export POWERLEVEL9K_INSTANT_PROMPT='quiet'
-fi
-
-(( ${+commands[direnv]} )) && emulate zsh -c "$(direnv export zsh)"
-
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-(( ${+commands[direnv]} )) && emulate zsh -c "$(direnv hook zsh)"
-
-# Valid font modes:
-# flat, awesome-patched, awesome-fontconfig, nerdfont-complete, nerdfont-fontconfig
-if [[ -r ~/.powerlevel9k_font_mode ]]; then
-    POWERLEVEL9K_MODE=$(head -1 ~/.powerlevel9k_font_mode)
-fi
-
-# ──────────────────────────────────────────────────────────────────────────────
-
 # Unset COMPLETION_WAITING_DOTS in a file in ~/.zshrc.d if you want red dots to be displayed while waiting for completion
 export COMPLETION_WAITING_DOTS="true"
 
@@ -492,16 +466,12 @@ fi
 # Closes #73
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(bracketed-paste)
 
+# Load Starship prompt (before iTerm shell integrations)
+eval "$(starship init zsh)"
+
 # Load iTerm shell integrations if found.
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 export PATH="$HOME/.iterm2:$PATH"
-
-# To customize your prompt, run `p10k configure` or edit ~/.p10k.zsh.
-if [[ ! -f ~/.p10k.zsh ]]; then
-    echo "Run p10k configure or edit ~/.p10k.zsh to configure your prompt"
-else
-    source ~/.p10k.zsh
-fi
 
 # Original source: https://vinipsmaker.wordpress.com/2014/02/23/my-zsh-config/
 # bash prints ^C when you're typing a command and control-c to cancel, so it

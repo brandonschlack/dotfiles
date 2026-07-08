@@ -466,12 +466,12 @@ fi
 # Closes #73
 ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(bracketed-paste)
 
-# Load Starship prompt (before iTerm shell integrations)
-eval "$(starship init zsh)"
-
 # Load iTerm shell integrations if found.
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 export PATH="$HOME/.iterm2:$PATH"
+
+# Load Starship prompt (after iTerm shell integrations)
+eval "$(starship init zsh)"
 
 # Original source: https://vinipsmaker.wordpress.com/2014/02/23/my-zsh-config/
 # bash prints ^C when you're typing a command and control-c to cancel, so it

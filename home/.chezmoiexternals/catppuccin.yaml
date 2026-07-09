@@ -1,3 +1,8 @@
+".config/atuin/themes/catppuccin-mocha-blue.toml":
+  type: archive-file
+  url: https://github.com/catppuccin/atuin/archive/refs/heads/main.zip
+  path: "atuin-main/themes/mocha/catppuccin-mocha-blue.toml"
+  refreshPeriod: 168h
 ".themes/catppuccin/bat":
   type: archive
   url: https://github.com/catppuccin/bat/archive/refs/heads/main.zip

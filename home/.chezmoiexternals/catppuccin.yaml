@@ -1,7 +1,14 @@
 ".themes/catppuccin/bat":
   type: archive
   url: https://github.com/catppuccin/bat/archive/refs/heads/main.zip
-  stripComponents: 1
+  stripComponents: 2
+  include:
+    - "*/themes/**"
+  refreshPeriod: 168h
+".themes/catppuccin/chrome":
+  type: archive
+  url: https://github.com/catppuccin/chrome/archive/refs/heads/main.zip
+  stripComponents: 2
   include:
     - "*/themes/**"
   refreshPeriod: 168h

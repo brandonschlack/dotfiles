@@ -1,0 +1,7 @@
+".themes/eza":
+  type: archive
+  url: https://github.com/eza-community/eza-themes/archive/refs/heads/main.zip
+  stripComponents: 1
+  include:
+    - "*/themes/**"
+  refreshPeriod: 168h

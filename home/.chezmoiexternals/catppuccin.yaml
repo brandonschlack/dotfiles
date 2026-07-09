@@ -1,0 +1,12 @@
+".themes/catppuccin/bat":
+  type: archive
+  url: https://github.com/catppuccin/bat/archive/refs/heads/main.zip
+  stripComponents: 1
+  include:
+    - "*/themes/**"
+  refreshPeriod: 168h
+".themes/catppuccin/delta/catppuccin.gitconfig":
+  type: archive-file
+  url: https://github.com/catppuccin/delta/archive/refs/heads/main.zip
+  path: "delta-main/catppuccin.gitconfig"
+  refreshPeriod: 168h

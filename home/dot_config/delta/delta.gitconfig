@@ -2,14 +2,27 @@
     path = ~/.config/delta/themes.gitconfig
 
 [include]
-    path = ~/.config/delta/themes.vampire-bat.gitconfig
+    path = ~/.themes/catppuccin/delta/catppuccin.gitconfig
 
 [delta]
-    features                    = vampire-bat
+    features                    = file-labels line-number-format catppuccin-mocha
     side-by-side                = false
+    keep-plus-minus-markers     = true
     navigate                    = true
     hyperlinks                  = true
     hyperlinks-file-link-format = "vscode://file/{path}:{line}"
+
+[delta "file-labels"]
+    file-added-label            = [+]
+    file-copied-label           = [==]
+    file-modified-label         = [*]
+    file-removed-label          = [-]
+    file-renamed-label          = [->]
+
+[delta "line-number-format"]
+    line-numbers                = true
+    line-numbers-left-format    = "{nm:>4}|"
+    line-numbers-right-format   = "{np:>4}|"
 
 [alias]
     diff-sbs = -c delta.features=side-by-side diff

@@ -7,7 +7,8 @@
 # : Flavor {{{
 
 [flavor]
-dark = "dracula"
+dark = "catppuccin-mocha"
+light = "catppuccin-latte"
 
 [indicator]
 preview = { underline = false }

@@ -22,9 +22,6 @@
 # All files in there will be sourced, and keeping your customizations
 # there will keep you from having to maintain a separate fork of the
 # quickstart kit.
-if [[ -f ~/.zrc-zprof-enabled ]]; then
-    zmodload zsh/zprof
-fi
 
 # Check if a command exists
 function can_haz() {
@@ -541,25 +538,9 @@ function zrc() {
         'enable-debug-mode')
             date > ~/.zrc-debug-mode
             ;;
-
-        # Profiling checks happen before the settings code is loaded, so we
-        # touch the actual file instead of reading via _zrc-get-setting
-        'disable-zsh-profiling')
-            rm -f ~/.zrc-zprof-enabled
-            echo "New ZSH sessions will no longer use profiling."
-            ;;
-        'enable-zsh-profiling')
-            touch ~/.zrc-zprof-enabled
-            echo "New ZSH sessions will use profiling."
-            ;;
         *)
             zrc-help
             ;;
 
     esac
 }
-
-if [[ -f ~/.zrc-zprof-enabled ]]; then
-    zprof
-fi
-

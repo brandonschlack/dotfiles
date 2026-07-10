@@ -1,0 +1,27 @@
+{{- if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "debian" "ubuntu")) -}}
+#!/usr/bin/env sh
+
+set -e
+
+echo "-------------------------------------"
+if ! command -v zsh-patina >/dev/null 2>&1; then
+    echo "Installing zsh-patina"
+
+    if ! command -v gh >/dev/null 2>&1; then
+        echo "GitHub CLI not found. Please install it first."
+        exit 1
+    fi
+
+    ARCH=$(dpkg --print-architecture)
+
+    gh release download -R michel-kraemer/zsh-patina -p "zsh-patina_*_${ARCH}.deb" -D "${HOME}/.local/share/dpkg" --skip-existing
+    sudo dpkg -i "${HOME}/.local/share/dpkg/zsh-patina_"*"_${ARCH}.deb"
+    rm -f "${HOME}/.local/share/dpkg/zsh-patina_"*"_${ARCH}.deb"
+
+    echo "Finished installing zsh-patina"
+    echo "-------------------------------------"
+else
+    echo "zsh-patina already installed"
+    echo "-------------------------------------"
+fi
+{{- end -}}

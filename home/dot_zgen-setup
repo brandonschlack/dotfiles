@@ -52,9 +52,7 @@ load-default-plugin-list() {
     # Load fzf-tab before plugins that wrap widgets
     zgenom load Aloxaf/fzf-tab
 
-    # If zsh-syntax-highlighting is bundled after zsh-history-substring-search,
-    # they break, so get the order right.
-    zgenom load zdharma-continuum/fast-syntax-highlighting
+    # Load the zsh-history-substring-search plugin and set up key bindings for it
     zgenom load zsh-users/zsh-history-substring-search
 
     # Set keystrokes for substring searching

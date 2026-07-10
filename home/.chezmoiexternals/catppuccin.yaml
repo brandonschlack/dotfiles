@@ -10,6 +10,13 @@
   include:
     - "*/themes/**"
   refreshPeriod: 168h
+".themes/catppuccin/btop":
+  type: archive
+  url: https://github.com/catppuccin/btop/archive/refs/heads/main.zip
+  stripComponents: 2
+  include:
+    - "*/themes/**"
+  refreshPeriod: 168h
 ".themes/catppuccin/chrome":
   type: archive
   url: https://github.com/catppuccin/chrome/archive/refs/heads/main.zip

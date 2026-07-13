@@ -1,36 +1,37 @@
-tap "1password/tap"
-tap "ankitpokhrel/jira-cli"
-tap "beeftornado/rmtree"
-tap "bramstein/webfonttools"
-tap "buo/cask-upgrade"
-tap "charmbracelet/tap"
-tap "dart-lang/dart"
-tap "ddddddo/tap"
-tap "dracula/install"
-tap "emqx/mqttx"
-tap "eth-p/software"
-tap "github/gh"
-tap "gmerlino/rpiboot"
-tap "hacker1024/hacker1024"
-tap "homebrew/bundle"
+tap "1password/tap", trusted: true
+tap "ankitpokhrel/jira-cli", trusted: true
+tap "anomalyco/tap", trusted: true
+tap "beeftornado/rmtree", trusted: true
+tap "bramstein/webfonttools", trusted: true
+tap "buo/cask-upgrade", trusted: true
+tap "charmbracelet/tap", trusted: true
+tap "dart-lang/dart", trusted: true
+tap "ddddddo/tap", "https://github.com/ddddddO/homebrew-tap", trusted: true
+tap "dracula/install", trusted: true
+tap "emqx/mqttx", trusted: true
+tap "eth-p/software", trusted: true
+tap "github/gh", trusted: true
+tap "gmerlino/rpiboot", trusted: true
+tap "hacker1024/hacker1024", trusted: true
 tap "homebrew/cask"
-tap "homebrew/cask-drivers"
-tap "homebrew/cask-fonts"
-tap "homebrew/cask-versions"
 tap "homebrew/core"
-tap "homebrew/services"
-tap "jesseduffield/lazydocker"
-tap "ngrok/ngrok"
-tap "noahgorstein/tap"
-tap "osx-cross/arm"
-tap "osx-cross/avr"
-tap "px4/px4"
-tap "qmk/qmk"
-tap "sachaos/todoist"
-tap "sass/sass"
-tap "teamookla/speedtest"
-tap "vitorgalvao/tiny-scripts"
-brew "webp"
+tap "iiatlas/tap", trusted: true
+tap "jesseduffield/lazydocker", trusted: true
+tap "marsanne/cask", trusted: true
+tap "michel-kraemer/zsh-patina", trusted: true
+tap "ngrok/ngrok", trusted: true
+tap "noahgorstein/tap", trusted: true
+tap "osx-cross/arm", trusted: true
+tap "osx-cross/avr", trusted: true
+tap "px4/px4", trusted: true
+tap "qmk/qmk", trusted: true
+tap "sachaos/todoist", trusted: true
+tap "sass/sass", trusted: true
+tap "shivammathur/php", trusted: true
+tap "teamookla/speedtest", trusted: true
+tap "tmuxpack/tpack", trusted: true
+tap "vitorgalvao/tiny-scripts", trusted: true
+brew "age"
 brew "apr"
 brew "apr-util"
 brew "arduino-cli"
@@ -58,6 +59,7 @@ brew "cloudflared"
 brew "cmake"
 brew "libtool"
 brew "unixodbc"
+brew "libtiff"
 brew "php"
 brew "composer"
 brew "ctop"
@@ -66,6 +68,7 @@ brew "dcraw"
 brew "delve"
 brew "dfu-programmer"
 brew "dfu-util"
+brew "diff-so-fancy"
 brew "direnv"
 brew "dnsmasq"
 brew "doxygen"
@@ -77,11 +80,13 @@ brew "exiv2"
 brew "eza"
 brew "fastfetch"
 brew "fd"
+brew "ffmpeg"
 brew "libogg"
 brew "flac"
-brew "unbound"
 brew "libvorbis"
+brew "unbound"
 brew "ffmpegthumbnailer"
+brew "fnm"
 brew "woff2"
 brew "fontforge", link: false
 brew "fzf"
@@ -93,9 +98,11 @@ brew "git-flow"
 brew "git-lfs"
 brew "gitui"
 brew "glab"
+brew "glow"
 brew "go"
 brew "gopls"
-brew "handbrake", link: false
+brew "grc"
+brew "handbrake"
 brew "highlight"
 brew "homeassistant-cli"
 brew "httpd"
@@ -105,11 +112,13 @@ brew "imagemagick"
 brew "iperf3"
 brew "jnv"
 brew "jq"
+brew "jqp"
 brew "lazygit"
 brew "libmagic"
 brew "libmatroska"
 brew "libxml2"
 brew "lsusb"
+brew "luarocks"
 brew "m-cli"
 brew "mas"
 brew "mhash"
@@ -119,7 +128,7 @@ brew "midnight-commander"
 brew "minicom"
 brew "protobuf"
 brew "mosh"
-brew "zlib"
+brew "mq"
 brew "mysql"
 brew "navi"
 brew "neovim"
@@ -127,17 +136,17 @@ brew "nginx"
 brew "ninja"
 brew "nmap"
 brew "nowplaying-cli"
+brew "ollama"
 brew "openjdk"
 brew "otf2bdf"
 brew "pandoc"
 brew "php-code-sniffer"
 brew "php-cs-fixer"
-brew "php@8.0"
 brew "php@8.1"
 brew "php@8.2"
+brew "php@8.4"
 brew "pillow"
 brew "pinentry-mac"
-brew "pipx"
 brew "pkgconf"
 brew "poetry"
 brew "poppler"
@@ -145,19 +154,25 @@ brew "pyenv"
 brew "python@3.9"
 brew "qt"
 brew "ripgrep"
+brew "rlwrap"
 brew "ruby"
 brew "sevenzip"
 brew "sherlock"
 brew "spotify-tui"
+brew "starship"
 brew "streamlink"
 brew "subversion"
 brew "switchaudio-osx"
 brew "tailspin"
+brew "taplo"
 brew "thefuck"
-brew "tldr"
+brew "tlrc"
 brew "tmux"
 brew "tmuxinator"
+brew "tpack", link: false
 brew "tree"
+brew "tree-sitter-cli"
+brew "uv"
 brew "volta"
 brew "wasm3"
 brew "wget"
@@ -165,10 +180,13 @@ brew "wp-cli"
 brew "wtfis"
 brew "wtfutil"
 brew "yazi"
+brew "yq"
 brew "zint"
+brew "zlib"
 brew "zoxide"
 brew "zsh"
 brew "ankitpokhrel/jira-cli/jira-cli"
+brew "anomalyco/tap/opencode"
 brew "beeftornado/rmtree/brew-rmtree"
 brew "bramstein/webfonttools/sfnt2woff-zopfli"
 brew "charmbracelet/tap/freeze"
@@ -177,7 +195,7 @@ brew "emqx/mqttx/mqttx-cli"
 brew "eth-p/software/bat-extras"
 brew "hacker1024/hacker1024/coretemp"
 brew "jesseduffield/lazydocker/lazydocker"
-brew "noahgorstein/tap/jqp"
+brew "michel-kraemer/zsh-patina/zsh-patina"
 brew "osx-cross/arm/arm-gcc-bin@8", link: true
 brew "osx-cross/avr/avr-gcc@8", link: true
 brew "qmk/qmk/qmk"
@@ -191,14 +209,12 @@ cask "a-better-finder-attributes"
 cask "a-better-finder-rename"
 cask "adobe-creative-cloud"
 cask "aerial"
+cask "affinity"
 cask "affinity-designer"
 cask "affinity-photo"
 cask "affinity-publisher"
 cask "alfred"
 cask "android-studio"
-cask "appdelete"
-cask "applite"
-cask "arc"
 cask "balenaetcher"
 cask "bartender"
 cask "betterdisplay"
@@ -208,37 +224,45 @@ cask "canva"
 cask "charles"
 cask "chatterino"
 cask "cloudflare-warp"
+cask "copilot-cli"
 cask "dash"
 cask "dbngin"
 cask "deskpad"
 cask "discord"
-cask "docker"
-cask "dracula-macos-color-picker"
+cask "docker-desktop"
+cask "dracula/install/dracula-macos-color-picker"
 cask "dropbox"
 cask "dteoh-devdocs"
-cask "fig"
 cask "figma"
 cask "firefox"
+cask "font-anton"
+cask "font-devicons"
 cask "font-fira-code"
 cask "font-fira-code-nerd-font"
 cask "font-hack-nerd-font"
 cask "font-meslo-lg-nerd-font"
 cask "font-monaspace"
+cask "font-monaspice-nerd-font"
+cask "font-open-sans"
 cask "font-overpass-nerd-font"
+cask "font-roboto"
+cask "font-roboto-condensed"
+cask "font-roboto-flex"
+cask "font-roboto-mono"
+cask "font-sora"
 cask "font-source-code-pro"
 cask "font-symbols-only-nerd-font"
-cask "fontforge"
-cask "forticlient-vpn"
+cask "font-work-sans"
+cask "fontforge-app"
 cask "franz"
 cask "fujifilm-tether-app"
 cask "fujifilm-x-raw-studio"
 cask "gitkraken"
 cask "gitkraken-cli"
-cask "google-backup-and-sync"
 cask "google-chrome"
 cask "google-chrome@canary"
 cask "gpg-suite"
-cask "handbrake"
+cask "handbrake-app"
 cask "hazel"
 cask "herd"
 cask "heynote"
@@ -252,69 +276,66 @@ cask "kaleidoscope"
 cask "karabiner-elements"
 cask "keyboard-maestro"
 cask "kicad"
-cask "kindle"
 cask "launchpad-manager"
 cask "little-snitch"
 cask "lunar"
+cask "iiatlas/tap/mdv"
 cask "mediamate"
 cask "micro-snitch"
 cask "microsoft-auto-update"
 cask "microsoft-edge"
 cask "microsoft-office"
 cask "microsoft-teams"
+cask "mimestream"
 cask "moom"
 cask "mqttx"
 cask "mutedeck"
 cask "ngrok"
 cask "notion"
-cask "notion-calendar"
 cask "obs"
 cask "obsidian"
-cask "parallels"
+cask "paragon-extfs"
 cask "pdf-expert"
 cask "pocket-casts"
 cask "postman"
 cask "proxyman"
 cask "qlcolorcode"
-cask "qlimagesize"
 cask "qlmarkdown"
 cask "qlstephen"
-cask "qlvideo"
 cask "qmk-toolbox"
-cask "quicklook-json"
+cask "quicklook-video"
 cask "quicklookase"
 cask "raindropio"
 cask "raspberry-pi-imager"
 cask "raycast"
 cask "replacicon"
-cask "screens"
 cask "screens-connect"
 cask "sensei"
-cask "sequel-pro"
+cask "sf-symbols"
 cask "sketch"
-cask "skype"
 cask "slack"
 cask "sonos"
 cask "soulver"
-cask "spaceid"
 cask "spaceman"
 cask "spotify"
 cask "squidman"
 cask "streamlink-twitch-gui"
 cask "suspicious-package"
 cask "symboliclinker"
+cask "syntax-highlight"
 cask "tableplus"
+cask "taphouse"
 cask "teamviewer"
 cask "temurin"
 cask "textmate"
+cask "thaw"
 cask "thonny"
-cask "tigervnc-viewer"
 cask "tinkerwell"
 cask "tower"
+cask "tmuxpack/tpack/tpack"
 cask "transmit"
 cask "typora"
 cask "vagrant"
-cask "vial"
 cask "virtualbox"
 cask "visual-studio-code"
 cask "vlc"
@@ -323,19 +344,20 @@ cask "yacreader"
 cask "zoom"
 mas "1Password for Safari", id: 1569813296
 mas "Actions", id: 1586435171
-mas "AdGuard for Safari", id: 1440147259
+mas "AdGuard Mini", id: 1440147259
 mas "Amphetamine", id: 937984704
 mas "aria2-integration", id: 6476014369
 mas "Baking Soda", id: 1601151613
 mas "Cardhop", id: 1290358394
 mas "Color Picker", id: 1545870783
+mas "Compressor", id: 6746516157
 mas "Crouton", id: 1461650987
 mas "DaisyDisk", id: 411643860
 mas "Dark Reader for Safari", id: 1438243180
 mas "Developer", id: 640199958
 mas "Discovery", id: 1381004916
-mas "Ethernet Status", id: 1186187538
 mas "Fantastical", id: 975937182
+mas "Final Cut Pro", id: 1631624924
 mas "Focus", id: 777233759
 mas "Friendly Streaming", id: 553245401
 mas "GarageBand", id: 682658836
@@ -346,20 +368,25 @@ mas "Hyperduck", id: 6444667067
 mas "iA Writer", id: 775737590
 mas "Image Vectorizer", id: 789656124
 mas "iMovie", id: 408981434
-mas "Keynote", id: 409183694
+mas "Itsyhome", id: 6758070650
+mas "Keynote", id: 361285480
+mas "Kindle", id: 302584613
+mas "Logic Pro", id: 1615087040
 mas "mChapters", id: 563131976
 mas "Mela", id: 1568924476
 mas "Mic Drop", id: 1489816366
 mas "MQTT Explorer", id: 1455214828
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
-mas "Parcel", id: 639968404
+mas "Numbers", id: 361304891
+mas "Pages", id: 361309726
+mas "Parcel", id: 375589283
 mas "Photomator", id: 1444636541
+mas "Pi-hole Remote", id: 1515445551
 mas "Pichon by Icons8", id: 786188363
-mas "Pixelmator Pro", id: 1289583905
+mas "Pixelmator Pro", id: 6746662575
 mas "Portal", id: 1436994560
 mas "PrimeVideo", id: 545519333
 mas "Prompt", id: 1594420480
+mas "Quip", id: 6711331483
 mas "Reeder", id: 1529448980
 mas "Reeder", id: 6475002485
 mas "Save to Raindrop.io", id: 1549370672
@@ -372,4 +399,5 @@ mas "Speedtest", id: 1153157709
 mas "The Unarchiver", id: 425424353
 mas "Todoist", id: 585829637
 mas "Velja", id: 1607635845
+mas "WireGuard", id: 1451685025
 mas "Xcode", id: 497799835

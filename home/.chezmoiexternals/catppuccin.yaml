@@ -29,3 +29,26 @@
   url: https://github.com/catppuccin/delta/archive/refs/heads/main.zip
   path: "delta-main/catppuccin.gitconfig"
   refreshPeriod: 168h
+{{- if eq .chezmoi.os "darwin" }}
+".themes/catppuccin/iterm/Catppuccin Frappe.itermcolors":
+  type: archive-file
+  url: https://github.com/catppuccin/iterm/archive/refs/heads/main.zip
+  path: "iterm-main/colors/catppuccin-frappe.itermcolors"
+  refreshPeriod: 168h
+".themes/catppuccin/iterm/Catppuccin Latte.itermcolors":
+  type: archive-file
+  url: https://github.com/catppuccin/iterm/archive/refs/heads/main.zip
+  path: "iterm-main/colors/catppuccin-latte.itermcolors"
+  refreshPeriod: 168h
+".themes/catppuccin/iterm/Catppuccin Macchiato.itermcolors":
+  type: archive-file
+  url: https://github.com/catppuccin/iterm/archive/refs/heads/main.zip
+  path: "iterm-main/colors/catppuccin-macchiato.itermcolors"
+  refreshPeriod: 168h
+".themes/catppuccin/iterm/Catppuccin Mocha.itermcolors":
+  type: archive-file
+  url: https://github.com/catppuccin/iterm/archive/refs/heads/main.zip
+  path: "iterm-main/colors/catppuccin-mocha.itermcolors"
+  refreshPeriod: 168h
+{{ end -}}
+

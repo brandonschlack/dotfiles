@@ -10,25 +10,25 @@
 # Clone zgenom if you haven't already
 if [[ -z "$ZGENOM_PARENT_DIR" ]]; then
     ZGENOM_PARENT_DIR=$HOME
-    ZGENOM_SOURCE_FILE=$ZGENOM_PARENT_DIR/.zrc-zgenom/zgenom.zsh
+    ZGENOM_SOURCE_FILE=$ZGENOM_PARENT_DIR/.zgenom/zgenom.zsh
 
     # Set ZGENOM_SOURCE_FILE to the old directory if it already exists
-    if [[ -f "$ZGENOM_PARENT_DIR/zgenom/zgenom.zsh" ]]; then
-        ZGENOM_SOURCE_FILE=$ZGENOM_PARENT_DIR/zgenom/zgenom.zsh
+    if [[ -f "$ZGENOM_PARENT_DIR/.zgenom/zgenom.zsh" ]]; then
+        ZGENOM_SOURCE_FILE=$ZGENOM_PARENT_DIR/.zgenom/zgenom.zsh
     fi
 fi
 
 # zgenom stores the clones plugins & themes in $ZGEN_DIR when it
 # is set. Otherwise it stuffs everything in the source tree, which
 # is unclean.
-ZGEN_DIR=${ZGEN_DIR:-$HOME/.zgenom}
+ZGEN_DIR=${ZGEN_DIR:-$HOME/.zgenom/sources}
 
 if [[ ! -f "$ZGENOM_SOURCE_FILE" ]]; then
     if [[ ! -d "$ZGENOM_PARENT_DIR" ]]; then
         mkdir -p "$ZGENOM_PARENT_DIR"
     fi
     pushd $ZGENOM_PARENT_DIR
-    git clone https://github.com/jandamm/zgenom.git .zrc-zgenom
+    git clone https://github.com/jandamm/zgenom.git .zgenom
     popd
 fi
 
@@ -262,11 +262,11 @@ if [[ -L ~/.zsh-plugins ]]; then
 fi
 
 # If .zgen-setup is newer than init.zsh, regenerate init.zsh
-if [ $(get_file_modification_time ${REAL_ZGEN_SETUP}) -gt $(get_file_modification_time ~/.zgenom/init.zsh) ]; then
+if [ $(get_file_modification_time ${REAL_ZGEN_SETUP}) -gt $(get_file_modification_time ~/.zgenom/sources/init.zsh) ]; then
     echo "$(basename ${REAL_ZGEN_SETUP}) ($REAL_ZGEN_SETUP) updated; creating a new init.zsh from plugin list in ${REAL_ZGEN_SETUP}"
     setup-zgen-repos
 elif [ -d ~/.zshrc.add-plugins.d ]; then
-    init_timestamp=$(get_file_modification_time ~/.zgenom/init.zsh)
+    init_timestamp=$(get_file_modification_time ~/.zgenom/sources/init.zsh)
     plugins_dir_timestamp=$(get_file_modification_time ~/.zshrc.add-plugins.d)
     if [ "$plugins_dir_timestamp" -gt "$init_timestamp" ]; then
         need_update="true"

@@ -1,7 +1,6 @@
 tap "1password/tap", trusted: true
 tap "ankitpokhrel/jira-cli", trusted: true
 tap "anomalyco/tap", trusted: true
-tap "beeftornado/rmtree", trusted: true
 tap "bramstein/webfonttools", trusted: true
 tap "buo/cask-upgrade", trusted: true
 tap "charmbracelet/tap", trusted: true
@@ -187,7 +186,6 @@ brew "zoxide"
 brew "zsh"
 brew "ankitpokhrel/jira-cli/jira-cli"
 brew "anomalyco/tap/opencode"
-brew "beeftornado/rmtree/brew-rmtree"
 brew "bramstein/webfonttools/sfnt2woff-zopfli"
 brew "charmbracelet/tap/freeze"
 brew "ddddddo/tap/gtree"
@@ -213,7 +211,6 @@ cask "affinity"
 cask "affinity-designer"
 cask "affinity-photo"
 cask "affinity-publisher"
-cask "alfred"
 cask "android-studio"
 cask "balenaetcher"
 cask "bartender"
@@ -221,6 +218,7 @@ cask "betterdisplay"
 cask "big-mean-folder-machine"
 cask "calibre"
 cask "canva"
+cask "carbon-copy-cloner"
 cask "charles"
 cask "chatterino"
 cask "cloudflare-warp"
@@ -254,7 +252,6 @@ cask "font-source-code-pro"
 cask "font-symbols-only-nerd-font"
 cask "font-work-sans"
 cask "fontforge-app"
-cask "franz"
 cask "fujifilm-tether-app"
 cask "fujifilm-x-raw-studio"
 cask "gitkraken"

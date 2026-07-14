@@ -1,0 +1,70 @@
+tap "eth-p/software", trusted: true
+tap "jesseduffield/lazydocker", trusted: true
+tap "michel-kraemer/zsh-patina"
+tap "tmuxpack/tpack"
+brew "atuin"
+brew "bat"
+brew "btop"
+brew "chezmoi"
+brew "diff-so-fancy"
+brew "direnv"
+brew "duf"
+brew "eza"
+brew "fastfetch"
+brew "fd"
+brew "ffmpeg-full", link: true
+brew "fnm"
+brew "fzf"
+brew "gh"
+brew "git"
+brew "git-lfs"
+brew "grc"
+brew "imagemagick-full", link: true
+brew "jnv"
+brew "jq"
+brew "lazydocker"
+brew "lazygit"
+brew "mas"
+brew "neovim"
+brew "resvg"
+brew "sevenzip"
+brew "starship"
+brew "tmux"
+brew "tree"
+brew "tree-sitter-cli"
+brew "yazi"
+brew "zoxide"
+brew "zsh"
+brew "eth-p/software/bat-extras-batdiff"
+brew "eth-p/software/bat-extras-batgrep"
+brew "eth-p/software/bat-extras-batman"
+brew "eth-p/software/bat-extras-batpipe"
+brew "michel-kraemer/zsh-patina/zsh-patina", trusted: true
+cask "1password"
+cask "1password-cli"
+cask "bartender"
+cask "carbon-copy-cloner"
+cask "cardhop"
+cask "dropbox"
+cask "fantastical"
+cask "font-fira-code-nerd-font"
+cask "font-meslo-lg-nerd-font"
+cask "font-symbols-only-nerd-font"
+cask "google-chrome"
+cask "istat-menus"
+cask "iterm2@beta"
+cask "karabiner-elements"
+cask "keyboard-maestro"
+cask "mimestream"
+cask "moom"
+cask "raycast"
+cask "setapp"
+cask "taphouse"
+cask "tmuxpack/tpack/tpack", trusted: true
+mas "1Password for Safari", id: 1569813296
+mas "GarageBand", id: 682658836
+mas "iMovie", id: 408981434
+mas "Keynote", id: 361285480
+mas "Numbers", id: 361304891
+mas "Pages", id: 361309726
+mas "Velja", id: 1607635845

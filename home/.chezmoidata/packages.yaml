@@ -1,7 +1,55 @@
 packages:
   darwin:
-    brews: []
-    casks: []
+    taps:
+      - homebrew/cask
+      - homebrew/core
+    brews:
+      - age
+      - atuin
+      - bat
+      - eth-p/software/bat-extras-batdiff
+      - eth-p/software/bat-extras-batgrep
+      - eth-p/software/bat-extras-batman
+      - eth-p/software/bat-extras-batpipe
+      - btop
+      - chezmoi
+      - diff-so-fancy
+      - direnv
+      - duf
+      - eza
+      - fastfetch
+      - fd
+      - ffmpeg-full
+      - fnm
+      - fzf
+      - gh
+      - git
+      - git-delta
+      - git-lfs
+      - grc
+      - imagemagick-full
+      - jesseduffield/lazydocker/lazydocker
+      - jnv
+      - jq
+      - lazygit
+      - mas
+      - neovim
+      - resvg
+      - ripgrep
+      - sevenzip
+      - starship
+      - tmux
+      - tmuxpack/tpack/tpack
+      - tree
+      - tree-sitter-cli
+      - yazi
+      - zoxide
+      - zsh
+      - michel-kraemer/zsh-patina/zsh-patina
+    casks:
+      - font-fira-code-nerd-font
+      - font-meslo-lg-nerd-font
+      - font-symbols-only-nerd-font
     mas: []
   linux:
     apt:

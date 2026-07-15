@@ -27,6 +27,7 @@ brew "lazygit"
 brew "mas"
 brew "neovim"
 brew "resvg"
+brew "ripgrep"
 brew "sevenzip"
 brew "starship"
 brew "tmux"
@@ -42,29 +43,100 @@ brew "eth-p/software/bat-extras-batpipe"
 brew "michel-kraemer/zsh-patina/zsh-patina", trusted: true
 cask "1password"
 cask "1password-cli"
+cask "a-better-finder-attributes"
+cask "a-better-finder-rename"
+cask "affinity"
 cask "bartender"
+cask "big-mean-folder-machine"
 cask "carbon-copy-cloner"
 cask "cardhop"
+cask "dbngin"
+cask "discord"
+cask "docker-desktop"
+cask "dracula/install/dracula-macos-color-picker"
 cask "dropbox"
 cask "fantastical"
+cask "firefox"
+cask "font-anton"
+cask "font-devicons"
+cask "font-fira-code"
 cask "font-fira-code-nerd-font"
+cask "font-hack-nerd-font"
 cask "font-meslo-lg-nerd-font"
+cask "font-monaspace"
+cask "font-monaspice-nerd-font"
+cask "font-open-sans"
+cask "font-overpass-nerd-font"
+cask "font-roboto"
+cask "font-roboto-condensed"
+cask "font-roboto-flex"
+cask "font-roboto-mono"
+cask "font-sora"
+cask "font-source-code-pro"
 cask "font-symbols-only-nerd-font"
+cask "font-work-sans"
 cask "google-chrome"
+cask "hazel"
+cask "iina"
 cask "istat-menus"
 cask "iterm2@beta"
+cask "kaleidoscope"
 cask "karabiner-elements"
 cask "keyboard-maestro"
+cask "lunar"
+cask "mediamate"
 cask "mimestream"
 cask "moom"
+cask "mutedeck"
+cask "obsidian"
+cask "paragon-extfs"
+cask "pdf-expert"
+cask "pocket-casts"
+cask "postman"
+cask "proxyman"
+cask "raindropio"
+cask "raspberry-pi-imager"
 cask "raycast"
+cask "replacicon"
+cask "screens-connect"
 cask "setapp"
+cask "sf-symbols"
+cask "spotify"
 cask "taphouse"
 cask "tmuxpack/tpack/tpack", trusted: true
+cask "todoist-app"
+cask "visual-studio-code"
 mas "1Password for Safari", id: 1569813296
+mas "Actions", id: 1586435171
+mas "AdGuard Mini", id: 1440147259
+mas "Amphetamine", id: 937984704
+mas "aria2-integration", id: 6476014369
+mas "Baking Soda", id: 1601151613
+mas "Final Cut Pro", id: 1631624924
 mas "GarageBand", id: 682658836
+mas "Home Assistant", id: 1099568401
+mas "Hyperduck", id: 6444667067
+mas "Image Vectorizer", id: 789656124
 mas "iMovie", id: 408981434
+mas "Itsyhome", id: 6758070650
 mas "Keynote", id: 361285480
+mas "Kindle", id: 302584613
 mas "Numbers", id: 361304891
 mas "Pages", id: 361309726
+mas "Parcel", id: 375589283
+mas "Photomator", id: 1444636541
+mas "Pi-hole Remote", id: 1515445551
+mas "Pixelmator Pro", id: 6746662575
+mas "Portal", id: 1436994560
+mas "Prompt", id: 1594420480
+mas "Reeder", id: 1529448980
+mas "Save to Raindrop.io", id: 1549370672
+mas "Screens 5", id: 1663047912
+mas "Session", id: 1521432881
+mas "Shareful", id: 1522267256
+mas "Shortery", id: 1594183810
+mas "SmartGym", id: 922744883
+mas "Speedtest", id: 1153157709
 mas "Velja", id: 1607635845
+mas "WireGuard", id: 1451685025
+mas "Xcode", id: 497799835

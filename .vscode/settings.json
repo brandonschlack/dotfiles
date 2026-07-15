@@ -15,6 +15,7 @@
       "**/git/config": "properties",
       "**/git/ignore": "gitignore",
       "**/git/config.tmpl": "goshell",
+      "**/Brewfile*": "ruby",
   },
   "material-icon-theme.files.associations": {
       "**.yaml": "yaml",

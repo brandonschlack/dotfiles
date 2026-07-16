@@ -73,9 +73,10 @@ setopt correct
 unsetopt correctall
 
 # ─── Path ─────────────────────────────────────────────────────────────────────
-
+{{- if (and (eq .chezmoi.os "darwin") (eq .chezmoi.arch "amd64")) }}
 # Base PATH
 PATH="$PATH:/sbin:/usr/sbin:/bin:/usr/bin"
+{{- end }}
 
 # If you need to add extra directories to $PATH that are not checked for
 # here, add a file in ~/.zshrc.d - then you won't have to maintain a

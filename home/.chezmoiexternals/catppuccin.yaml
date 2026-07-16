@@ -29,6 +29,13 @@
   url: https://github.com/catppuccin/delta/archive/refs/heads/main.zip
   path: "delta-main/catppuccin.gitconfig"
   refreshPeriod: 168h
+".themes/catppuccin/gitui":
+  type: archive
+  url: https://github.com/catppuccin/gitui/archive/refs/heads/main.zip
+  stripComponents: 2
+  include:
+    - "*/themes/**"
+  refreshPeriod: 168h
 {{- if eq .chezmoi.os "darwin" }}
 ".themes/catppuccin/iterm/Catppuccin Frappe.itermcolors":
   type: archive-file

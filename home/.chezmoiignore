@@ -2,7 +2,6 @@
 .config/yazi/flavors/**
 .config/yazi/plugins/**
 .config/yazi/bookmark
-.homebrew/Brewfile-*
 
 {{ if ne .chezmoi.os "darwin" }}
 .chezmoiscripts/darwin/

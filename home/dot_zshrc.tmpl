@@ -23,6 +23,11 @@
 # there will keep you from having to maintain a separate fork of the
 # quickstart kit.
 
+{{- if eq .chezmoi.os "linux" }}
+# Add Homebrew
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+{{- end }}
+
 # Check if a command exists
 function can_haz() {
     which "$@" > /dev/null 2>&1

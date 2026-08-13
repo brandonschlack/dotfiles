@@ -393,9 +393,9 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)*==34=34}:${(s.:.)LS_COLORS}")';
 
 # Load any custom zsh completions we've installed
-if [[ -d ~/.zsh-completions.d ]]; then
-    load-shell-fragments ~/.zsh-completions.d
-fi
+#if [[ -d ~/.zsh-completions.d ]]; then
+#    load-shell-fragments ~/.zsh-completions.d
+#fi
 
 # Load zmv
 autoload -U zmv

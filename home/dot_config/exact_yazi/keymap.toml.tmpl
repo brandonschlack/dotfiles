@@ -51,6 +51,11 @@ desc = "Linemode: mtime"
 on = [ "m", "o" ]
 run = [ "linemode owner", "plugin pref-by-location -- save" ]
 desc = "Linemode: owner"
+# Custom Size + Mtime
+[[mgr.prepend_keymap]]
+on = [ "m", "c" ]
+run = [ "linemode size_mtime", "plugin pref-by-location -- save" ]
+desc = "Linemode: size+mtime"
 # None
 [[mgr.prepend_keymap]]
 on = [ "m", "n" ]

@@ -1,7 +1,7 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/refs/tags/v0.61.1/schema/config.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/refs/tags/v0.64.1/schema/config.json
 
 gui:
-  nerdFontsVersion: "2"
+  nerdFontsVersion: "3"
   # Catppuccin Mocha Blue
   theme:
     activeBorderColor:
@@ -32,6 +32,6 @@ gui:
   authorColors:
     '*': '#b4befe'
 git:
-  pagers:
+  diffRenderers:
     - colorArg: always
-      pager: delta --diff-so-fancy --dark --paging=never
+      command: delta --diff-so-fancy --dark --paging=never

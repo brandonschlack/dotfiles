@@ -17,6 +17,11 @@
 {{-   $swDistro = (output "powershell.exe" "-NoProfile" "-NonInteractive" "-Command" "(Get-CimInstance -Class Win32_OperatingSystem).Caption") | trim -}}
 {{- end -}}
 
+{{- $osid := .chezmoi.os -}}
+{{- if hasKey .chezmoi.osRelease "id" -}}
+{{-   $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
+{{- end -}}
+
 {{- $chassisType := "desktop" }}
 {{- if eq .chezmoi.os "darwin" }}
 {{-   if contains "MacBook" (output "system_profiler" "SPHardwareDataType") }}
@@ -57,6 +62,7 @@ data:
   personal: {{ $personal }}
   sw:
     os: {{ .chezmoi.os | quote }}
+    osid: {{ $osid | quote }}
     distro: {{ $swDistro | quote }}
   hw:
     chassis: {{ $chassisType | quote }}

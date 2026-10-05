@@ -22,6 +22,17 @@
 {{-   $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
 {{- end -}}
 
+{{- $hardwareModel := "" }}
+{{- if eq .chezmoi.os "darwin" }}
+{{-   $hardwareModel = (output "system_profiler" "SPHardwareDataType" "-json") | jq ".SPHardwareDataType[0].machine_name" | trim }}
+{{- else if eq .chezmoi.os "linux" }}
+{{-   if contains "rpi" (.chezmoi.kernel.osrelease) }}
+{{-     $hardwareModel = (output "cat" "/proc/device-tree/model" | trim) }}
+{{-   else }}
+{{-     $hardwareModel = (output "hostnamectl" "--json=short" | mustFromJson).HardwareModel }}
+{{-   end }}
+{{- end }}
+
 {{- $chassisType := "desktop" }}
 {{- if eq .chezmoi.os "darwin" }}
 {{-   if contains "MacBook" (output "system_profiler" "SPHardwareDataType") }}
@@ -65,6 +76,7 @@ data:
     osid: {{ $osid | quote }}
     distro: {{ $swDistro | quote }}
   hw:
+    model: {{ $hardwareModel | quote }}
     chassis: {{ $chassisType | quote }}
     arch: {{ .chezmoi.arch | replace "amd64" "x86_64"| replace "aarch64" "arm64" | quote }}
   name: {{ $fullName | quote }}

@@ -141,7 +141,6 @@ load-default-plugin-list() {
     zgenom ohmyzsh plugins/chruby
     zgenom ohmyzsh plugins/colored-man-pages
     zgenom ohmyzsh plugins/git
-    zgenom ohmyzsh plugins/github
     zgenom ohmyzsh plugins/python
     zgenom ohmyzsh plugins/rsync
     zgenom ohmyzsh plugins/screen

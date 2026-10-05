@@ -397,3 +397,21 @@ mas "Todoist", id: 585829637
 mas "Velja", id: 1607635845
 mas "WireGuard", id: 1451685025
 mas "Xcode", id: 497799835
+go "github.com/go-delve/delve/cmd/dlv"
+go "github.com/tsonglew/dutis"
+go "github.com/haya14busa/goplay/cmd/goplay"
+go "golang.org/x/tools/gopls"
+go "github.com/cweill/gotests/gotests"
+go "github.com/josharian/impl"
+go "honnef.co/go/tools/cmd/staticcheck"
+cargo "zsh-plugin-cli"
+uv "oshash"
+npm "@thunderclient/cli"
+npm "@vue/devtools"
+npm "corepack"
+npm "degit"
+npm "eslint"
+npm "glob"
+npm "prettier"
+npm "style-dictionary"
+npm "ulid"
